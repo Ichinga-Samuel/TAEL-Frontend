@@ -1,0 +1,14 @@
+
+
+<div class="container mt-5">
+  <h3 class="">Welcome To Africa's No1 Ebook Library</h3>
+  <div class="col-4 offset-lg-8">
+    <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded-pill placeholder-green-300" placeholder="Search by title or author">
+    <button (click)="submit(newquery.value)" class="btn-dark"><span class="">Search</span></button>
+  </div>
+  <app-book-list></app-book-list>
+</div>
+
+
+
+

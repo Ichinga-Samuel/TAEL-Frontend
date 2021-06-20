@@ -1,0 +1,15 @@
+
+<div class="container">
+  <h3 class="">Latest Books</h3>
+  <div class="row row-cols-auto">
+  <div class="col-auto d-flex justify-content-evenly" *ngFor="let book of books">
+    <div class="card h-100 my-2" style="width: 250px;">
+      <img src="{{book.imageUrl}}" alt="" class="card-img-top img-fluid" style="max-height: 210px">
+      <div class="card-body px-0 py-0">
+        <h3 class="card-title mx-auto">{{book.title}}</h3>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+

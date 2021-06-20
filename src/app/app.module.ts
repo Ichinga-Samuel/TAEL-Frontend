@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { BookComponent } from './book/book.component';
 import { SiteSearchComponent } from './site-search/site-search.component';
 import { reducers, metaReducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { reducers, metaReducers } from './reducers';
     AppRoutingModule,
     StoreModule.forRoot(reducers, {
       metaReducers
-    })
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [{provide:'API_URL', useValue: "http://127.0.0.1:3000"}],
   bootstrap: [AppComponent]

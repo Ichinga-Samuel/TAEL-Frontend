@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Store, select} from "@ngrx/store";
 import {FormBuilder, FormControl, ReactiveFormsModule, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms'
-import {UserService as US} from "../user/services/user.service";
+import {login} from "../state/user/user.actions";
+import {notify, selectUser} from "../state";
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,9 +12,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   public msg: string = ''
-  public loggedin: boolean = false
+  public status: boolean = false
   loginForm: FormGroup
-  constructor(private us: US, private fg: FormBuilder, private router: Router) {
+  constructor(private fg: FormBuilder, private router: Router, private store: Store) {
     this.loginForm = fg.group({
       email: [''],
       password: [''],
@@ -21,21 +23,12 @@ export class LoginComponent implements OnInit {
 
   login(form: FormGroup){
     if(form.valid){
-      this.us.login(form.value).subscribe(
-        (value => {
-          this.loggedin = value.status
-          this.msg = value.msg
-          this.router.navigate(['/home'])
-        }),
-        (error => {
-          this.msg = 'Unable to login try again'
-          this.loggedin = false
-          console.log(error)
-        })
-      )
+      this.store.dispatch(login({email: form.value.email, password: form.value.password}))
     }
   }
   ngOnInit(): void {
+    // @ts-ignore
+    this.store.pipe(select(notify)).subscribe(value => {this.msg = value.msg; this.status = value.login;
+    if(this.status){this.router.navigate(['/home'])} })
   }
-
 }

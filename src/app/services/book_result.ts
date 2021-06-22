@@ -1,6 +1,7 @@
 
 
 export class BookResult{
+  id: string;
   title: string;
   language: string;
   year: number;
@@ -18,6 +19,7 @@ export class BookResult{
   authors: any[];
 
   constructor(obj?: any) {
+    this.id = obj?._id || null
     this.title = obj?.title || null;
     this.language = obj?.language || null;
     this.year = obj?.year || null;

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {BookSearchService} from "../services/booksearch.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {BookResult} from "../services/book_result";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-book-list',
@@ -7,16 +8,11 @@ import {BookSearchService} from "../services/booksearch.service";
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  books: any[] = []
-  constructor(private bs: BookSearchService) { }
+   @Input()public books: Observable<BookResult[]> | undefined
+  constructor() { }
 
   ngOnInit(): void {
-    this.bs.latest().subscribe(
-      value => {
-        this.books = value
-      },
-      error => {console.log(error)}
-    )
-  }
+
+   }
 
 }

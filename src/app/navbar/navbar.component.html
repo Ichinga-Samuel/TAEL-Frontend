@@ -14,8 +14,8 @@
         <li class="nav-item"><a href="" class="nav-link" routerLink="/authors">Authors</a></li>
       </ul>
       <div class="d-flex">
-        <a href="" class="nav-link" routerLink="/login">Login</a>
-        <a href="#" class="" *ngIf="0">Welcome</a>
+        <a href="" class="nav-link" *ngIf="!loggedin" routerLink="/login">Login</a>
+        <p class="nav-link text-light" *ngIf="loggedin">Welcome {{user}}</p>
         <app-site-search></app-site-search>
       </div>
     </div>

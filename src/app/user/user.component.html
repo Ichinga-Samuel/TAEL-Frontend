@@ -2,6 +2,7 @@
 <div class="" *ngIf="created">
   Account Created Successfully
 </div>
+<div class="" *ngIf="!created && msg">{{msg}}</div>
 <div class="container g-3 mt-5 col-5">
   <form class="row row-cols-2 col-lg-5 col-auto mx-auto" [formGroup]="userReg" (ngSubmit)="register(userReg)" ngNativeValidate>
   <div class="col-lg-6 col-auto mt-2">

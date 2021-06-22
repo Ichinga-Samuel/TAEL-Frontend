@@ -8,12 +8,11 @@ import { UserComponent } from '../user/user.component';
 import {SearchResultsComponent} from "../search-results/search-results.component";
 
 
-
 const routes: Routes = [
   {path: '', component: ShellComponent,
    children:[
      {path: 'home', component: HomeComponent},
-     {path: 'book', component: BookComponent},
+     {path: 'book/:id', component: BookComponent},
      {path: 'search', component: SearchResultsComponent},
      {path: '', redirectTo: 'home', pathMatch: 'full'}
    ]

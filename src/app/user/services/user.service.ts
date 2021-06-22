@@ -1,6 +1,8 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {User} from "./user_object"
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,8 @@ export class UserService {
     return this.http.post(url, body)
   }
 
-  login(body:any): Observable<any>{
+  login(body:any): Observable<User>{
     let url = `${this.url}/auth/login`
-    return this.http.post(url, body)
+    return this.http.post(url, body).pipe(map(x => new User(x)))
   }
 }

@@ -1,3 +1,48 @@
-<p>book works!</p>
 
-<p class="" *ngIf="book|async as b">{{b.title}}</p>
+<div class="container mx-auto py-5">
+  <div class="row g-0" *ngIf="book|async as doc" >
+    <div class="col-md-4 ">
+      <div class="card" *ngFor="let author of doc.authors" style="max-width: 300px; max-height: 400px">
+        <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="img-fluid card-img-top">
+        <div class="card-body">
+          <p class="h5 card-title">{{author.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card" style="max-width: 800px;">
+      <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
+      <div class="card-body">
+        <p class="card-title h4 mx-auto">{{doc.title}}</p>
+        <hr class="">
+        <div class="d-flex justify-content-between py-lg-2 my-2">
+          <p class="card-text">Pages: {{doc.pages}}</p>
+          <p class="card-text">Language: {{doc.language}}</p>
+          <p class="card-text">Branch: {{doc.branch}}</p>
+          <p class="card-text">First Publication: {{doc.year}}</p>
+        </div>
+        <hr class="">
+        <div class="my-2">
+          <button class="btn btn-primary" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
+          <p class="class-text collapse" id="summary">{{doc.summary}}</p>
+        </div>
+        <div class="my-2">
+          <p class="card-title">Categories</p>
+          <div class="d-flex flex-wrap justify-content-between">
+          <span class="rounded-pill border bg-primary mx-auto p-2 text-light" *ngFor="let genre of doc.genres">{{genre}}</span>
+        </div>
+        </div>
+        <div class="">
+          <a href="{{doc.fileUrl}}" class="btn btn-primary">Download</a>
+        </div>
+      </div>
+      <div class="card-footer bg-dark">
+        <div class="d-flex flex-wrap justify-content-around text-light">
+          <span class="card-text">File Type: {{doc.fileType}}</span> <span class="card-text">Size: {{doc.fileSize}}</span> <span class="">Downloads: {{doc.downloads}}</span>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+</div>
+

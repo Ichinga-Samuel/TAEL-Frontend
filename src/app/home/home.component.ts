@@ -13,6 +13,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public loaded: boolean = false
   public book: BookResult[] = []
   // @ts-ignore
   public books$ = this.store.pipe(select(books))
@@ -23,7 +24,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadLatest())
+    // if(!this.loaded)
+    // @ts-ignore
+    this.store.pipe(select(books)).subscribe(val => {let nal =val;
+      // @ts-ignore
+      if(!nal.length){this.store.dispatch(loadLatest())}
+    })
+    // this.store.dispatch(loadLatest())
       }
 
 }

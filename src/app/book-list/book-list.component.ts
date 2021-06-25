@@ -8,7 +8,9 @@ import {Observable} from "rxjs";
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-   @Input()public books: Observable<BookResult[]> | undefined
+   @Input()public books: BookResult[] | undefined
+   @Input()public ready: boolean = false
+   @Input()public caption: string|undefined = undefined
   constructor() { }
 
   ngOnInit(): void {

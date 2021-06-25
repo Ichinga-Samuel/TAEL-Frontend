@@ -23,10 +23,14 @@ export class BookSearchService {
     return this.http.get(url).pipe(map((res:any) => {return <any>res.map((book:any) => new BookResult(book))}))
   }
 
-  getBook(id: string): Observable<any>{
+  getBook(id: string): Observable<BookResult>{
     let url = `${this.url}${this.path}/get/${id}`;
-    return this.http.get(url).pipe(map((res: any) => {return {book: res.book, similar: res.similar}} ))
-
+    return this.http.get(url).pipe(map((res: any) => {return  new BookResult(res)}))
   }
+
+  similar(query: string): Observable<BookResult[]>{
+  const queryUrl: string = `${this.url}${this.path}/similar?q=${query}`;
+  return this.http.get(queryUrl).pipe(map((res:any) => {return <any>res.map((book:any) =>  new BookResult(book))}))
+}
 
 }

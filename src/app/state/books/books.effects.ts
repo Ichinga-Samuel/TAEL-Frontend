@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 
 import {BookSearchService} from "../../services/booksearch.service";
-import {addBooks, loadLatest, searchBook} from "./book.actions";
+import {BookResult} from "../../services/book_result";
+import {addBooks, loadLatest, searchBook, getBook, setBook} from "./book.actions";
 import {catchError, exhaustMap, map} from "rxjs/operators";
 import {of} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -13,6 +14,13 @@ export class BooksEffects{
   latest$ = createEffect(() => {
     return this.actions$.pipe(ofType(loadLatest), exhaustMap(action => this.bs.latest().pipe(
       map(books => addBooks({books})), catchError(err => [])
+    )))
+  })
+  book$ = createEffect(() => {
+    return this.actions$.pipe(ofType(getBook), exhaustMap(query => this.bs.getBook(query.query).pipe(
+      map(book => setBook({book})), catchError(err => {
+        throw err
+      })
     )))
   })
   search$ = createEffect(() => {

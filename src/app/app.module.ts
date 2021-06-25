@@ -23,6 +23,7 @@ import * as booksReducers from "./state/books/books.reducer"
 import {UserEffects, BooksEffects} from "./state";
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store';
+import { SizePipe } from './size.pipe';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store';
     HomeComponent,
     BookComponent,
     SiteSearchComponent,
+    SizePipe,
 
   ],
   imports: [

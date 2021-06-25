@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <a href="" class="card-title h5">{{book.title}}</a>
+            <a href="" class="card-title h5 text-decoration-underline" routerLink="/book/{{book.id}}">{{book.title}}</a>
             <div class="class-text d-flex mx-0">
               <span class="me-2" *ngFor="let aut of book.authors">{{aut.name}}</span>
             </div>

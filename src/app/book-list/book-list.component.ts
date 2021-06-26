@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BookResult} from "../services/book_result";
+import {Book} from "../services/book";
 import {Observable} from "rxjs";
 
 @Component({
@@ -8,8 +8,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-   @Input()public books: BookResult[] | undefined
-   @Input()public ready: boolean = false
+   @Input()public books: Book[] | undefined
    @Input()public caption: string|undefined = undefined
   constructor() { }
 

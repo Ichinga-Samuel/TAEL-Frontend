@@ -1,6 +1,6 @@
 
 
-export class BookResult{
+export class Book{
   id: string;
   title: string;
   language: string;

@@ -1,48 +1,32 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
-
 import {UserState} from "./user/user.reducer";
-import {Notifications} from "./notify/notify.reducers";
-import {booksAdapter, BooksState} from "./books/books.reducer";
-import {BookResult} from "../services/book_result";
-import {selectUrl, selectRouteParams} from "./router.selectors"
+import {Notifications} from "./notify/notify.reducer";
+import {AuthorsState} from "./authors/authors.reducer"
+import {BooksState} from "./books/books.reducer";
 
+// effects
 export {BooksEffects} from "./books/books.effects"
 export {UserEffects} from "./user/user.effects"
+export {AuthorsEffects} from "./authors/authors.effects"
+
+// selectors and actions
+export {notify} from "./notify/notify.selectors"
+export {books, selectBook, popular} from "./books/books.selectors"
+export {authorsEntities, author, authors} from "./authors/authors.selector"
+export {selectUser} from "./user/user.selector"
+export {getBook, setBook, setBooks, addBooks, loadLatest, postReview, updateDownloads} from "./books/books.actions"
+export {loadAll, setAuthors, searchAuthor, setAuthor, getAuthor} from "./authors/authors.action"
+
+
+// reducers
+export {reducer as booksReducer} from "./books/books.reducer"
+export {reducer as authorsReducer} from "./authors/authors.reducer"
+export {reducer as notifyReducer} from "./notify/notify.reducer"
+export {reducer as userReducer} from "./user/user.reducer"
 
 
 export interface AppState{
   user: UserState,
   notify: Notifications,
-  books: BooksState
+  books: BooksState,
+  authors: AuthorsState
 }
-
-const {selectEntities, selectAll} = booksAdapter.getSelectors()
-const booksSelector = createFeatureSelector<BooksState>('books')
-export const books = createSelector(
-  booksSelector,
-  selectAll,
-
-)
-
-export const bookEntities = createSelector(
-  booksSelector,
-  selectEntities,
-)
-
-export const selectBook = createSelector(
-  bookEntities,
-  selectRouteParams,
-  (books, {id}) => books[id]
-)
-
-export const userSelector = createFeatureSelector<AppState, UserState>('user')
-
-export const selectUser = createSelector(
-  userSelector,
-  (user:UserState) => user
-)
-
-export const notify = createSelector(
-  (state: AppState) => state,
-  (notification) => ({...notification.notify, ...notification.user})
-)

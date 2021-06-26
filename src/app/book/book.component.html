@@ -23,13 +23,21 @@
         </div>
         <hr class="">
         <div class="my-2">
-          <button class="btn btn-primary" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
-          <p class="class-text collapse" id="summary">{{doc.summary}}</p>
+          <button class="btn btn-primary p-3" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
+          <p class="card-text collapse" id="summary">{{doc.summary}}</p>
+          <button class="btn btn-primary p-3" type="button" data-bs-target="#review" data-bs-toggle="collapse">Write Reviews</button>
+          <div class="" id="review">
+            <ul class="">
+            <li class="" *ngFor="let rev of doc.reviews">{{rev}}</li>
+          </ul>
+            <app-review [id]="doc.id" [book]="doc.title"></app-review>
+          </div>
+
         </div>
         <div class="my-2">
           <p class="card-title">Categories</p>
-          <div class="d-flex flex-wrap justify-content-between">
-          <span class="rounded-pill border bg-primary mx-auto p-2 text-light" *ngFor="let genre of doc.genres">{{genre}}</span>
+          <div class="d-flex flex-wrap justify-content-start">
+          <span class="rounded-pill border bg-primary mx-auto p-3 text-light" *ngFor="let genre of doc.genres">{{genre}}</span>
         </div>
         </div>
         <div class="">
@@ -46,6 +54,6 @@
 </div>
 </div>
 
-<app-book-list [books]="similar" [ready]="ready" [caption]="caption">
+<app-book-list [books]="similar" [caption]="caption">
 
 </app-book-list>

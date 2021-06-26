@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store, select} from "@ngrx/store";
-import {notify} from "../state";
-
+import {notify, selectUser} from "../state";
+import {mergeMap, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.store.pipe(select(notify)).subscribe(val => {this.loggedin = val.login; this.user=val.name
-  })
+    this.store.select(notify).pipe(mergeMap(n => this.store.select(selectUser).pipe(map(u => {return {user:u, notifs: n}})))).subscribe(
+      data =>  {// @ts-ignore
+        this.user = data.user.name; this.loggedin=data.notifs.login;}
+    )
   }
 }
-

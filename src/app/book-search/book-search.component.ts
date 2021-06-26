@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit, Output, EventEmitter, Inject} from '@angular/core';
-import {BookResult} from "../services/book_result";
+import {Book} from "../services/book";
 import {Observable, fromEvent} from "rxjs";
 import {debounceTime, filter, map, switchMap, tap} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 
-import {addBooks} from "../state/books/book.actions";
-import {BookSearchService} from "../services/booksearch.service";
+import {addBooks} from "../state/books/books.actions";
+import {BooksService} from "../services/books.service";
 
 
 @Component({
@@ -17,8 +17,8 @@ import {BookSearchService} from "../services/booksearch.service";
 export class BookSearchComponent implements OnInit {
 
   @Output() loading: EventEmitter<boolean> = new EventEmitter();
-  @Output() books: EventEmitter<BookResult[]>  = new EventEmitter();
-  constructor(private el: ElementRef, private store: Store, private router: Router, private route: ActivatedRoute, private bs: BookSearchService) {
+  @Output() books: EventEmitter<Book[]>  = new EventEmitter();
+  constructor(private el: ElementRef, private store: Store, private router: Router, private route: ActivatedRoute, private bs: BooksService) {
   }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class BookSearchComponent implements OnInit {
       map((e:any) => e.target.value), filter((txt: string) => txt.length >= 3), debounceTime(300),
       tap((o:any) => { this.loading.emit(true)
       }), switchMap((query: string) => this.bs.search(query))).
-      subscribe((books: BookResult[]) =>{
+      subscribe((books: Book[]) =>{
         this.loading.emit(false);
         this.books.emit(books);
         this.store.dispatch(addBooks({books}))

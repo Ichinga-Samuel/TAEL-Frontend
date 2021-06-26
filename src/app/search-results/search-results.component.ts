@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BookResult} from "../services/book_result";
-import {BookSearchService} from "../services/booksearch.service";
+import {Book} from "../services/book";
+import {BooksService} from "../services/books.service";
 import {ActivatedRoute} from "@angular/router";
 import {filter, map, switchMap} from "rxjs/operators";
 import {Store, select} from "@ngrx/store";
 
-import {searchBook, addBooks} from "../state/books/book.actions";
+import {searchBook, addBooks} from "../state/books/books.actions";
 
 
 @Component({
@@ -14,11 +14,11 @@ import {searchBook, addBooks} from "../state/books/book.actions";
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
-  @Input() result: BookResult[] | undefined;
+  @Input() result: Book[] | undefined;
   @Input() loading: boolean = false
-  constructor(private store: Store, private route: ActivatedRoute, private bs: BookSearchService) {
+  constructor(private store: Store, private route: ActivatedRoute, private bs: BooksService) {
   }
-  getResults(books: BookResult[]): void{
+  getResults(books: Book[]): void{
     this.result = books
   }
   ngOnInit(): void {

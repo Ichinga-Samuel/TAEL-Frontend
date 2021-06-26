@@ -23,7 +23,7 @@ const notifyReducer = createReducer(
   defaultState,
   on(loginError, (state, {loginErr}) => ({...state, ...loginErr})),
   on(logout, (state) => defaultState),
-  on(notify, (state, {Notification}) => ({...Notification}))
+  on(notify, (state, {Notification}) => ({...state,...Notification}))
 )
 
 export function reducer(state: Notifications | undefined, action: Action){

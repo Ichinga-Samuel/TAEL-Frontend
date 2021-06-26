@@ -1,14 +1,18 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {EntityState, EntityAdapter, createEntityAdapter} from "@ngrx/entity";
 
-import {BookResult} from "../../services/book_result";
-import {addBooks, loadLatest, setBooks, clearBooks, setBook} from "./book.actions";
+import {Book} from "../../services/book";
+import {addBooks, loadLatest, setBooks, clearBooks, setBook} from "./books.actions";
 
-export interface BooksState extends EntityState<BookResult>{
 
+function sortByDownloads(a: Book, b:Book): number{
+  return b.downloads - a.downloads
 }
 
-export const booksAdapter:EntityAdapter<BookResult> = createEntityAdapter<BookResult>()
+export interface BooksState extends EntityState<Book>{
+}
+
+export const booksAdapter:EntityAdapter<Book> = createEntityAdapter<Book>({sortComparer: sortByDownloads})
 
 export const initialState: BooksState = booksAdapter.getInitialState({})
 

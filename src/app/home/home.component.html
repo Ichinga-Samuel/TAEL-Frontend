@@ -6,7 +6,7 @@
     <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded-pill placeholder-green-300" placeholder="Search by title or author">
     <button (click)="submit(newquery.value)" class="btn-dark"><span class="">Search</span></button>
   </div>
-  <app-book-list [books]="books" [ready]="ready" [caption]="caption"></app-book-list>
+  <app-book-list [books]="books" [caption]="caption"></app-book-list>
 </div>
 
 

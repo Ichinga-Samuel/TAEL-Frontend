@@ -1,6 +1,6 @@
 import {createAction, props} from "@ngrx/store";
-import {Notifications, LoginState} from "./notify.reducers";
-export {LoginState, Notifications} from "./notify.reducers"
+import {Notifications, LoginState} from "./notify.reducer";
+export {LoginState, Notifications} from "./notify.reducer"
 
 
 export const loginError = createAction(

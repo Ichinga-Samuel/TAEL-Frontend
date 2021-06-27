@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Author} from "../services/author";
 import {Store, select} from "@ngrx/store";
-import {authors} from "../state";
+import {selectauthors} from "../state";
 
 @Component({
   selector: 'app-authors',
@@ -14,7 +14,7 @@ export class AuthorsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private store: Store) { }
 
   ngOnInit(): void {
-    this.store.select(authors).subscribe(val => this.authors =val)
+    this.store.select(selectauthors).subscribe(val => this.authors =val)
   }
 
 }

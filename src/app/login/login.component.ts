@@ -3,7 +3,7 @@ import {Store, select} from "@ngrx/store";
 import {FormBuilder, FormControl, ReactiveFormsModule, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms'
 import {login} from "../state/user/user.actions";
 import {notify, selectUser} from "../state";
-import {Router, ActivatedRouteSnapshot} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,8 +13,9 @@ import {Router, ActivatedRouteSnapshot} from "@angular/router";
 export class LoginComponent implements OnInit {
   public msg: string = ''
   public status: boolean = false
+  public redirectUrl: string = '/home'
   loginForm: FormGroup
-  constructor(private fg: FormBuilder, private router: Router, private store: Store, private route: ActivatedRouteSnapshot) {
+  constructor(private fg: FormBuilder, private router: Router, private store: Store, private route: ActivatedRoute) {
     this.loginForm = fg.group({
       email: [''],
       password: [''],
@@ -28,10 +29,10 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    let url = this.route.queryParamMap.get('redirectUrl')
-    console.log(url)
+    let url = this.route.snapshot.queryParamMap.get('redirectUrl')
+    this.redirectUrl = url ? url: this.redirectUrl
     // @ts-ignore
-    this.store.pipe(select(notify)).subscribe(value => {this.msg = value.msg;
-    if(this.status){this.router.navigate(['/home'])} })
+    this.store.pipe(select(notify)).subscribe(value => {this.msg = value.msg; this.status = value.login;
+    if(value.login){this.router.navigate([`${this.redirectUrl}`])} })
   }
 }

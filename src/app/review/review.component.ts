@@ -1,7 +1,7 @@
 import {Component, OnInit, HostBinding, Input, ViewChild, ElementRef} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
-import {selectBook, selectUser, postReview, notify} from "../state";
+import {selectUser, postReview, notify} from "../state";
 import {map, mergeMap} from "rxjs/operators";
 
 @Component({
@@ -12,7 +12,7 @@ import {map, mergeMap} from "rxjs/operators";
 export class ReviewComponent implements OnInit{
   @Input() book: string = ''
   @Input() id: string = ''
-  @ViewChild('review') tb: any
+  @ViewChild('post') tb: any
   review: string = ''
   name: string = ''
   email: string = ''
@@ -29,14 +29,15 @@ export class ReviewComponent implements OnInit{
       this.store.dispatch(postReview({post}))}
     else{
       this.popup = true
-
-      setTimeout(() => {this.popup=false; this.tb.nativeElement.focus()}, 5000, )
     }
+  }
+  close(){
+    this.popup=false
+    this.tb.nativeElement.focus()
   }
 
   ngOnInit(): void {
     this.url = this.router.url
-    console.log(this.url)
       // @ts-ignore
     this.store.select(notify).pipe(mergeMap(n => this.store.select(selectUser).pipe(map(u => {return {user:u, notifs: n}})))).subscribe(
       data =>  {// @ts-ignore

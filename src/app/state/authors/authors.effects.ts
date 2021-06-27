@@ -18,13 +18,13 @@ export class AuthorsEffects{
 
   one$ = createEffect(() => {
     // @ts-ignore
-    return this.action$.pipe(ofType(getAuthor), exhaustMap((id) => this.aus.getAuthor(id.id).pipe(map((author:Author) => setAuthor({author}),
+    return this.action$.pipe(ofType(getAuthor), exhaustMap((id) => this.aus.getAuthor(id.id).pipe(map((author:Author) => {return setAuthor({author})},
       catchError((err) => {throw err})))))
   })
 
   search$ = createEffect(() => {
     // @ts-ignore
-    return this.action$.pipe(ofType(setAuthor), exhaustMap((query: string) => this.aus.search(query).pipe(map((authors: Author[]) => setAuthors({authors})
+    return this.action$.pipe(ofType(searchAuthor), exhaustMap((query: string) => this.aus.search(query).pipe(map((authors: Author[]) => setAuthors({authors})
       ), catchError(() => [])))
     )
   })

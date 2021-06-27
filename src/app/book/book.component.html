@@ -26,9 +26,9 @@
           <button class="btn btn-primary p-3" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
           <p class="card-text collapse" id="summary">{{doc.summary}}</p>
           <button class="btn btn-primary p-3" type="button" data-bs-target="#review" data-bs-toggle="collapse">Write Reviews</button>
-          <div class="" id="review">
+          <div class="collapse" id="review">
             <ul class="">
-            <li class="" *ngFor="let rev of doc.reviews">{{rev}}</li>
+            <li class="" *ngFor="let rev of doc.reviews">{{rev.review}}</li>
           </ul>
             <app-review [id]="doc.id" [book]="doc.title"></app-review>
           </div>
@@ -41,7 +41,8 @@
         </div>
         </div>
         <div class="">
-          <a href="{{doc.fileUrl}}" class="btn btn-primary">Download</a>
+          <button class="" (click)="down()"><a href="{{doc.fileUrl}}" class="btn btn-primary" >Download</a></button>
+
         </div>
       </div>
       <div class="card-footer bg-dark">

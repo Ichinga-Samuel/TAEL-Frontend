@@ -1,10 +1,10 @@
 
 <div class="container">
   <p class="h5">Leave your reviews here</p>
-  <textarea [(ngModel)] = "review" class="form-control" rows="15" cols="35" placeholder="login to be able to leave reviews" #review></textarea >
+  <textarea [(ngModel)] = "review" class="form-control" rows="15" cols="35" placeholder="login to be able to leave reviews" #post></textarea >
   <div class="alert alert-warning alert-dismissible fade show" *ngIf="popup">
-    <strong>You must<a href="" class="" routerLink="[/login, queryParams: { redirectUrl: {{url}}}]">login</a></strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>You Must <a href="" class="" [routerLink]="['/login']" [queryParams]="{ redirectUrl: url}">Login</a> To Be Able to Write Reviews</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
   </div>
   <div class="d-flex">
     <button class="btn me-auto" type="submit" (click)="send()">Submit</button>

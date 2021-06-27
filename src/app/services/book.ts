@@ -12,7 +12,7 @@ export class Book{
   fileUrl: string;
   imageUrl: string;
   ratings: number;
-  reviews: string[];
+  reviews: any[];
   fileType: string;
   fileSize: number;
   downloads: number;

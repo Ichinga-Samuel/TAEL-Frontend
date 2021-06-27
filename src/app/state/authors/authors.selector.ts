@@ -11,11 +11,11 @@ export const authorsEntities = createSelector(
   authorSelector,
   selectEntities,
 )
-export const authors =createSelector(
+export const selectauthors =createSelector(
   authorSelector,
   selectAll
 )
-export  const author = createSelector(
+export  const selectauthor = createSelector(
   authorsEntities,
   selectRouteParams,
   (authors, {id}) => authors[id]

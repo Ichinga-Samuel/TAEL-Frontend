@@ -34,15 +34,14 @@ export class BooksService {
   }
 
   review(review: any): Observable<any>{
-    console.log(review)
-    let path = '/api/review'
+    let path = '/api/reviews'
     let url = `${this.url}${path}`
     delete review.id
     return this.http.post(url, review).pipe()
   }
 
   updateDownloads(id: string):Observable<any>{
-    let url = `${this.url}${this.path}/downloads`
-    return this.http.post(url, id).pipe(map((res:any) => {return res.id}))
+    let url = `${this.url}${this.path}/downloads/${id}`
+    return this.http.get(url).pipe(map((res:any) => {return res.id}))
   }
 }

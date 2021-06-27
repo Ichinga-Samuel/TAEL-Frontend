@@ -1,13 +1,13 @@
 
 
 <div class="container">
-  <h3 class="">{{caption}}</h3>
+  <h2 class="text-capitalize h2">{{caption}}</h2>
   <div class="row row-cols-auto">
   <div class="col-auto d-flex justify-content-evenly" *ngFor="let book of books">
     <div class="card h-100 my-2" *ngIf="book" style="width: 250px;">
       <img src="{{book.imageUrl}}" alt="" class="card-img-top img-fluid" style="max-height: 210px">
       <div class="card-body px-0 py-0">
-        <a class="card-title mx-auto h6 text-decoration-underline" routerLink="/book/{{book.id}}">{{book.title}}</a>
+        <a class="card-title mx-auto h6 link-primary" routerLink="/book/{{book.id}}">{{book.title}}</a>
       </div>
     </div>
   </div>

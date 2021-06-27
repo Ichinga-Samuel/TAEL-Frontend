@@ -11,7 +11,7 @@ export {AuthorsEffects} from "./authors/authors.effects"
 // selectors and actions
 export {notify} from "./notify/notify.selectors"
 export {books, selectBook, popular} from "./books/books.selectors"
-export {authorsEntities, author, authors} from "./authors/authors.selector"
+export {authorsEntities, selectauthor, selectauthors} from "./authors/authors.selector"
 export {selectUser} from "./user/user.selector"
 export {getBook, setBook, setBooks, addBooks, loadLatest, postReview, updateDownloads} from "./books/books.actions"
 export {loadAll, setAuthors, searchAuthor, setAuthor, getAuthor} from "./authors/authors.action"

@@ -1,3 +1,20 @@
-<p>author works!</p>
+<div class="container" *ngIf="author as author">
+  <div class="card" style="max-width: 600px; ">
+    <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="max-height: 400px">
+    <div class="card-body">
+      <h3 class="card-title h3">{{author.name}}</h3>
+      <hr class="">
+      <div class="card-text"><span class="">Nationality: {{author.country}}</span></div>
+      <hr class="">
+      <div class="card-text mb-2"><span class="p3">Birth Date: {{author.birthdate | date }}</span></div>
+      <button class="btn-primary" data-bs-target="#bio" data-bs-toggle="collapse">Read Bio</button>
+      <div class="collapse" id="bio">
+        <h6 class="card-title mx-auto">Brief Bio</h6>
+        <div class="card-text">{{author.bio}}</div>
+      </div>
+    </div>
+  </div>
+  <hr class="">
+  <app-book-list [books]="author.books" caption="Books By {{author.name}}" *ngIf="author.books.length"></app-book-list>
+</div>
 
-<p *ngIf="author">{{author.name}}</p>

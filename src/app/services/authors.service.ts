@@ -23,7 +23,6 @@ export class AuthorsService {
 }
 
   getAuthor(id: string): Observable<Author>{
-    console.log(id)
   let url = `${this.url}${this.path}/get/${id}`;
   return this.http.get(url).pipe(map((res: any) => {return  new Author(res)}))
 }

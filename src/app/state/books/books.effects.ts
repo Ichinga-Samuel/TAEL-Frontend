@@ -26,7 +26,7 @@ export class BooksEffects{
   })
 
   reviews$ = createEffect(() => {
-    return this.actions$.pipe(ofType(postReview), map(post => post.post),  exhaustMap(post => this.bs.review(post)
+    return this.actions$.pipe(ofType(postReview), map(post => ({...post.post})),  exhaustMap(post => this.bs.review({...post})
       .pipe(map(id => getBook({id: post.id})), catchError(err => {
         throw err
       }))
@@ -35,7 +35,7 @@ export class BooksEffects{
 
   downloads$ = createEffect(() => {
     return this.actions$.pipe(ofType(updateDownloads), exhaustMap(id => this.bs.updateDownloads(id.id).pipe(
-      map(id => getBook({id})), catchError(err => {
+      map((id:string) => getBook({id:id})), catchError(err => {
         throw err
       })
     )))

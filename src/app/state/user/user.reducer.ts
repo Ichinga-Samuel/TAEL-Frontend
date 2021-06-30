@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from "@ngrx/store";
-import {User} from "../../user/services/user_object";
+import {User} from "../../services/user/user_object";
 import {setUser} from "./user.actions";
 
 export interface UserState extends User{

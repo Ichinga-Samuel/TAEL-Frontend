@@ -6,27 +6,20 @@
   </div>
   <div class="" *ngIf="result && !result.length && !loading">
     <div class="alert alert-dismissible alert-info">
-      <p class="h5">We Could Not find any result to match your query</p>
+      <p class="h6">We Could Not find any result to match your query</p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="loading=false"></button>
     </div>
   </div>
-<!--  <div class="mx-auto border border-primary">-->
-<!--    <h2 class="">Book Search Results</h2>-->
-<!--  </div>-->
-  <div class="rows row-cols-1 mx-auto" style="max-width: 600px;">
+  <div class="rows row-cols-1 " style="max-width: 600px;">
     <div class="col" *ngFor="let book of result">
-      <div class="card">
-    <img src="" alt="" class="card-img">
+      <div class="card bg-dark m-0 p-0">
     <div class="row g-0">
         <div class="col-md-4">
-          <img src="{{book.imageUrl}}" alt="" class="img-fluid" style="max-width: 200px; max-height: 200px">
+          <img src="{{book.imageUrl}}" alt="" class="img-fluid" style="width: 200px; max-height: 200px">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <a href="" class="card-title h5 text-decoration-underline" routerLink="/book/{{book.id}}">{{book.title}}</a>
-            <div class="class-text d-flex mx-0">
-              <span class="me-2" *ngFor="let aut of book.authors">{{aut.name}}</span>
-            </div>
+            <a href="" class="card-title h5 text-decoration-none" routerLink="/book/{{book.id}}">{{book.title}}</a>
             <div class="card-text d-flex mx-0">
               <span class="me-2">Year: {{book.year}}</span><span class="me-2">Pages: {{book.pages}}</span><span class="me-2">Category: {{book.branch}}</span>
             </div>
@@ -34,7 +27,10 @@
               <span class="me-2">Language: {{book.language}}</span> <span class="me-2">File Type: {{book.fileType}}</span>
             </div>
             <div class="card-test d-flex flex-wrap mx-0">
-              <span class="me-2" *ngFor="let genre of book.genres">{{genre}}</span>
+              <span class="me-2 bg-info px-2 mt-2 text-primary" *ngFor="let genre of book.genres">{{genre}}</span>
+            </div>
+            <div class="card-text d-flex mx-0">
+              <a class="link-primary" *ngFor="let author of book.authors" routerLink="/authors/{{author.id}}">{{author.name}}</a>
             </div>
           </div>
         </div>

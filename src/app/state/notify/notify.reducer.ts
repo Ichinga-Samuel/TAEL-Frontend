@@ -1,6 +1,6 @@
 import {on, Action, createReducer} from "@ngrx/store";
-import {loginError, logout, notify} from "./notify.actions";
-import {not} from "rxjs/internal-compatibility";
+import {notify} from "./notify.actions";
+
 
 export interface Notifications {
   msg: string,
@@ -14,15 +14,13 @@ export interface LoginState {
 }
 
 export const defaultState: Notifications = {
-  msg: "Not logged in",
+  msg: "",
   status: "Logged out",
   login: false
 }
 
 const notifyReducer = createReducer(
   defaultState,
-  on(loginError, (state, {loginErr}) => ({...state, ...loginErr})),
-  on(logout, (state) => defaultState),
   on(notify, (state, {Notification}) => ({...state,...Notification}))
 )
 

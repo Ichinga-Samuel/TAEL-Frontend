@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 
-import {BooksService} from "../../services/books.service";
-import {Book} from "../../services/book";
+import {BooksService} from "../../services/books/books.service";
+import {Book} from "../../services/books/book";
 import {addBooks, loadLatest, searchBook, getBook, setBook, postReview, updateDownloads} from "./books.actions";
 import {catchError, exhaustMap, map} from "rxjs/operators";
 import {of} from "rxjs";

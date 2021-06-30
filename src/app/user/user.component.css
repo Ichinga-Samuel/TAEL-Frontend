@@ -1,0 +1,28 @@
+html, app-user{
+  height: 100%;
+}
+
+app-user{
+	display: flex;
+  flex-direction: column;
+}
+
+.shell{
+	flex: 1 0 auto;
+  /*margin-top: auto;*/
+  background-color: black;
+  color: antiquewhite;
+}
+
+.footer-1{
+  flex-shrink: 0;
+}
+
+footer.nb-footer .copyright {
+margin-top: 15px;
+background: #111;
+padding: 7px 0;
+color: #999; }
+footer.nb-footer .copyright p {
+margin: 0;
+padding: 0; }

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Book} from "../services/book";
-import {BooksService} from "../services/books.service";
+import {Book} from "../services/books/book";
+import {BooksService} from "../services/books/books.service";
 import {ActivatedRoute} from "@angular/router";
 import {filter, map, switchMap} from "rxjs/operators";
 import {Store, select} from "@ngrx/store";

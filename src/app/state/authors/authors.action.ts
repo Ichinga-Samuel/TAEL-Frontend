@@ -1,6 +1,6 @@
 import {createAction, props} from "@ngrx/store";
 import {Update, Predicate} from "@ngrx/entity";
-import {Author} from "../../services/author";
+import {Author} from "../../services/authors/author";
 
 
 export const loadAll = createAction('Load Authors')

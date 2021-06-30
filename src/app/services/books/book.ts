@@ -1,4 +1,5 @@
-
+import {Author} from "../authors/author";
+import {books} from "../../state";
 
 export class Book{
   id: string;
@@ -16,7 +17,7 @@ export class Book{
   fileType: string;
   fileSize: number;
   downloads: number;
-  authors: any[];
+  authors: Author[] = [];
 
   constructor(obj?: any) {
     this.id = obj?._id || null
@@ -34,7 +35,8 @@ export class Book{
     this.reviews = obj?.reviews || null;
     this.ratings = obj?.ratings || null;
     this.downloads = obj?.downloads || null;
-    this.authors = obj?.authors || null;
+    let authors = obj?.authors || []
+    authors.map((author: any) => this.authors.push(new Author(author)))
   }
 
 }

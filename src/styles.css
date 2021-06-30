@@ -1,3 +1,28 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 /* You can add global styles to this file, and also import other style files */
+
+html, body, app-root, app-shell, app-user{
+	height: 100%;
+}
+
+app-root, app-shell, app-user{
+	display: flex;
+  flex-direction: column;
+}
+
+.shell{
+	flex: 1 0 auto;
+  /*margin-top: auto;*/
+  background-color: black;
+  color: antiquewhite;
+}
+
+.footer-1{
+  flex-shrink: 0;
+}
+.hr-or {
+    background-color: indigo;
+    height: 4px;
+    margin: 0px !important;
+  }

@@ -1,5 +1,5 @@
 import {createAction, props} from "@ngrx/store";
-import {User} from "../../user/services/user_object";
+import {User} from "../../services/user/user_object";
 
 
 export interface SignupState{
@@ -12,6 +12,10 @@ export interface SignupState{
 export const login = createAction(
   '[Login Page] Login',
   props<{email: string; password: string}>()
+)
+
+export const logout = createAction(
+  '[Login Page] Login',
 )
 
 export const setUser = createAction(

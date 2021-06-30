@@ -1,7 +1,7 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {EntityState, EntityAdapter, createEntityAdapter} from "@ngrx/entity";
 
-import {Author} from "../../services/author";
+import {Author} from "../../services/authors/author";
 import {loadAll, searchAuthor, setAuthors, setAuthor} from "./authors.action";
 
 

@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core"
 import {Actions, createEffect, ofType} from "@ngrx/effects"
 import {catchError, exhaustMap, map} from "rxjs/operators";
 
-import {Author} from "../../services/author";
-import {AuthorsService} from "../../services/authors.service";
+import {Author} from "../../services/authors/author";
+import {AuthorsService} from "../../services/authors/authors.service";
 import {loadAll, setAuthors, getAuthor, setAuthor, searchAuthor} from "../index";
 
 
@@ -19,7 +19,7 @@ export class AuthorsEffects{
   one$ = createEffect(() => {
     // @ts-ignore
     return this.action$.pipe(ofType(getAuthor), exhaustMap((id) => this.aus.getAuthor(id.id).pipe(map((author:Author) => {return setAuthor({author})},
-      catchError((err) => {throw err})))))
+      catchError(() => [])))))
   })
 
   search$ = createEffect(() => {

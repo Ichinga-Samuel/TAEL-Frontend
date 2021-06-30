@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
-import {Book} from "../book";
-import {BooksService} from "../books.service";
+import {Book} from "../books/book";
+import {BooksService} from "../books/books.service";
 import {Store} from "@ngrx/store";
 import {EMPTY, Observable, of} from "rxjs";
 import {getBook, selectBook, popular, loadLatest} from "../../state";

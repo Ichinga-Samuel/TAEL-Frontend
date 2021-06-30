@@ -1,7 +1,7 @@
 import {createAction, props} from "@ngrx/store";
 import {Update, Predicate} from "@ngrx/entity";
 
-import {Book} from "../../services/book";
+import {Book} from "../../services/books/book";
 
 
 export const loadLatest = createAction('Load Books')

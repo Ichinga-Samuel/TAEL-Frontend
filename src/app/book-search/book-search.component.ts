@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit, Output, EventEmitter, Inject} from '@angular/core';
-import {Book} from "../services/book";
+import {Book} from "../services/books/book";
 import {Observable, fromEvent} from "rxjs";
 import {debounceTime, filter, map, switchMap, tap} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 
-import {addBooks} from "../state/books/books.actions";
-import {BooksService} from "../services/books.service";
+import {addBooks} from "../state";
+import {BooksService} from "../services/books/books.service";
 
 
 @Component({
@@ -35,5 +35,4 @@ export class BookSearchComponent implements OnInit {
       () => {this.loading.emit(false)}
     )
   }
-
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Store, select} from "@ngrx/store";
-import {FormBuilder, FormControl, ReactiveFormsModule, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms'
-import {UserService as US} from "./services/user.service";
+import {FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms'
+
 import {Router} from "@angular/router";
 import {notify} from "../state";
 import {signup, SignupState} from "../state/user/user.actions";
+import {EmailValidatorService} from "../services/user/email-validator.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-user',
@@ -13,13 +15,15 @@ import {signup, SignupState} from "../state/user/user.actions";
 })
 export class UserComponent implements OnInit {
   msg: string = '';
-  public created: boolean = false;
+  public error: boolean = false;
   userReg: FormGroup;
-  constructor(private fb: FormBuilder, private store: Store, private router: Router) {
+
+  constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidate: EmailValidatorService, private ts: Title) {
+
     let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     this.userReg = fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', {updateOn: 'submit'}, [Validators.required, Validators.email, emailValidate.validate]],
       password: ['', Validators.compose([Validators.required, Validators.pattern(mediumRegex)])],
       cpassword: ['', Validators.required]
     }, {validators: this.confirmPassword})
@@ -35,17 +39,17 @@ export class UserComponent implements OnInit {
     if(form.valid){
       let user:SignupState = form.value;
       this.store.dispatch(signup({user}))
+      this.store.pipe(select(notify)).subscribe(value => {this.msg = value.msg; this.error = (value.status==='not created')})
     }
-
   }
 
   ngOnInit(): void {
+    this.ts.setTitle('Sign up Page of The African Ebook Library')
     // @ts-ignore
     this.store.pipe(select(notify)).subscribe(
-      value => {this.msg = value.msg; if(value.status === 'created'){this.router.navigate(['/login'])} else{this.created = false}
+      value => {if(value.status==='created'){this.router.navigate(['/login'])}
       }
     )
   }
-
 
 }

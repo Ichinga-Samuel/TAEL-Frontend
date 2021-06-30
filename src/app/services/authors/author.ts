@@ -1,4 +1,4 @@
-import {Book} from "./book";
+import {Book} from "../books/book";
 
 
 export class Author{

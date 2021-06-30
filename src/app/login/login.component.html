@@ -1,22 +1,38 @@
 
-
-<div class="container mx-auto mt-5 col-md-3 col-sm-auto">
-  <div class="col-lg-3 col-sm-auto mx-auto mt-2" *ngIf="status">{{msg}}</div>
-  <form action="" [formGroup]="loginForm" (ngSubmit)="login(loginForm)" class="" ngNativeValidate>
-  <div class="col-lg-3 col-sm-auto mx-auto mt-2">
-    <label for="lem" class="form-label">Email</label>
-    <input type="email" class="form-control" formControlName="email" id="lem" required>
+<div class="shell">
+  <div class="col-12 mx-0 p-0" style="background-color: #111">
+    <p class="navbar-brand text-center" role="banner"><a href="" class="link-primary" routerLink="/home">The African Ebook Library</a></p>
   </div>
-  <div class="col-lg-3 col-sm-auto mx-auto mt-2">
-    <label for="lpw" class="form-label">Password</label>
-    <input type="text" class="form-control" formControlName="password" id="lpw" required>
+  <div class="container-fluid row   p-0 mx-0 mb-0">
+  <div class="col-md-6">
+    <img src="./assets/images/bg-image.jpg.png" class="img-fluid" alt="">
   </div>
-   <div class="text-center mt-2">
-     <button class="btn-primary p-2 rounded-4" type="submit">Login</button>
-   </div>
-  <div class="col-lg-3 col-sm-auto mx-auto mt-2">
-      <p class="text-center">Not Registered? click <a href="" class="link-info" routerLink="/signup">here</a> to sign up</p>
-  </div>
+  <div class="col-md-6">
+    <form action="" [formGroup]="loginForm" (ngSubmit)="login(loginForm)" class="" ngNativeValidate>
+      <div class="col-md-6 mx-auto mt-2 h6" *ngIf="error">{{msg}}</div>
+      <div class="col-md-6 col-sm-6 mx-auto mt-2">
+        <label for="lem" class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" id="lem" required>
+      </div>
+      <div class="col-md-6 col-sm-6 mx-auto mt-2">
+        <label for="lpw" class="form-label">Password</label>
+        <input type="text" class="form-control" formControlName="password" id="lpw" required>
+      </div>
+       <div class="col-md-6 mt-2 mx-auto">
+         <button class="btn-primary px-3 rounded-4" type="submit">Login</button>
+       </div>
+      <div class="col-md-6 mx-auto mt-2">
+          <p class="text-center">Not Registered? click <a href="" class="link-info" routerLink="/signup">here</a> to sign up</p>
+      </div>
 </form>
+  </div>
 </div>
+</div>
+<footer class="nb-footer footer-1 mt-0 p-0 copyright">
+  <div class="col-12 mx-0 copyright mt-0 p-0">
+  <p class="text-center copyright">Copyright © 2019. The African Ebook Library.</p>
+  </div>
+</footer>
+
+
 

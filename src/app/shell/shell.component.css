@@ -1,0 +1,20 @@
+
+html, app-shell{
+  height: 100%;
+}
+
+app-shell{
+	display: flex;
+  flex-direction: column;
+}
+
+.shell{
+	flex: 1 0 auto;
+  /*margin-top: auto;*/
+  background-color: black;
+  color: antiquewhite;
+}
+
+.footer-1{
+  flex-shrink: 0;
+}

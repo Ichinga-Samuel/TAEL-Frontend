@@ -1,7 +1,7 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {EntityState, EntityAdapter, createEntityAdapter} from "@ngrx/entity";
 
-import {Book} from "../../services/book";
+import {Book} from "../../services/books/book";
 import {addBooks, loadLatest, setBooks, clearBooks, setBook} from "./books.actions";
 
 

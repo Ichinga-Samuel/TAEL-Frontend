@@ -8,9 +8,6 @@ export const loginError = createAction(
   props<{loginErr: LoginState}>()
 )
 
-export const logout = createAction(
-  '[Login Page] Login',
-)
 
 export const notify = createAction(
   'Notification',

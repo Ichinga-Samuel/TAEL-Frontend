@@ -12,6 +12,7 @@ import {map, mergeMap} from "rxjs/operators";
 export class ReviewComponent implements OnInit{
   @Input() book: string = ''
   @Input() id: string = ''
+  @Input() reviews: any[] = []
   @ViewChild('post') tb: any
   review: string = ''
   name: string = ''

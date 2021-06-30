@@ -3,6 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "./book";
 import { map } from 'rxjs/operators';
+import {Author} from "../authors/author";
+
+interface siteSearch {
+  authors: Author[],
+  books: Book[]
+}
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +34,9 @@ export class BooksService {
     return this.http.get(url).pipe(map((res: any) => {return  new Book(res)}))
   }
 
-  similar(query: string): Observable<Book[]>{
-    const queryUrl: string = `${this.url}${this.path}/similar?q=${query}`;
-    return this.http.get(queryUrl).pipe(map((res:any) => {return <any>res.map((book:any) =>  new Book(book))}))
+  similar(id: string): Observable<Book[]>{
+    const queryUrl: string = `${this.url}${this.path}/similar/${id}`;
+    return this.http.get(queryUrl).pipe(map((res:any) => {return <any>res.map((book:any) => new Book(book))}))
   }
 
   review(review: any): Observable<any>{
@@ -44,4 +50,18 @@ export class BooksService {
     let url = `${this.url}${this.path}/downloads/${id}`
     return this.http.get(url).pipe(map((res:any) => {return res.id}))
   }
+
+  site_search(query: string):Observable<siteSearch>{
+    let url = `${this.url}/api/search?q=${query}`;
+    return this.http.get(url).pipe(map((result: any) => {
+      let resp: siteSearch ={
+        authors: [],
+        books: []
+      }
+      result.authors.map((res: any) => resp.authors.push(new Author(res)))
+      result.books.map((res: any) => resp.books.push(new Book(res)))
+      return resp
+    }))
+  }
+
 }

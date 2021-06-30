@@ -1,13 +1,26 @@
 
-<div class="container">
-  <p class="h5">Leave your reviews here</p>
-  <textarea [(ngModel)] = "review" class="form-control" rows="15" cols="35" placeholder="login to be able to leave reviews" #post></textarea >
+<div class="container-fluid">
+  <div class="">
+    <h6 class="mx-2" *ngIf="reviews.length">Reviews</h6>
+    <h6 class="mx-2 text-capitalize" *ngIf="!reviews.length">No reviews yet, Be the first to Write a Review</h6>
+    <div class="list-group">
+    <div class="list-group-item" *ngFor="let rev of reviews">
+      <div class="d-flex w-100 justify-content-between">
+          <h6 class="">{{rev.name}}</h6>
+           <small class="">{{rev.time | date}}</small>
+      </div>
+      <p class="mb-1">{{rev.review}}</p>
+    </div>
+  </div>
+  </div>
+  <h5 class="h5 ms-2">Leave your reviews here</h5>
+  <textarea [(ngModel)] = "review" class="form-control" rows="5" cols="10" placeholder="leave your reviews" #post></textarea >
   <div class="alert alert-warning alert-dismissible fade show" *ngIf="popup">
-    <strong>You Must <a href="" class="" [routerLink]="['/login']" [queryParams]="{ redirectUrl: url}">Login</a> To Be Able to Write Reviews</strong>
+    <strong>You Must <a href="" class="link-primary text-warning" [routerLink]="['/login']" [queryParams]="{ redirectUrl: url}">Login</a> To Be Able to Write Reviews</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
   </div>
-  <div class="d-flex">
-    <button class="btn me-auto" type="submit" (click)="send()">Submit</button>
+  <div class="m-2">
+    <button class="btn-primary" type="submit" (click)="send()">Submit</button>
   </div>
 </div>
 

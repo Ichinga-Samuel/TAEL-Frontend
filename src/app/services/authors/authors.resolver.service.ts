@@ -3,7 +3,7 @@ import {Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@ang
 import {Store, select} from "@ngrx/store";
 import {Author} from "./author";
 import {AuthorsService} from "./authors.service";
-import {selectauthors, loadAll} from "../state";
+import {selectauthors, loadAll} from "../../state";
 import {Observable, of, EMPTY} from "rxjs";
 import {exhaustMap, take, catchError} from "rxjs/operators";
 @Injectable({

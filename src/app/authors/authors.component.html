@@ -1,16 +1,18 @@
 
-<div class="container">
-  <h2 class="mx-auto"></h2>Authors in Our Database
+<div class="container p-lg-4 mx-auto">
+  <h2 class="mx-auto" *ngIf="authors?.length">Authors in Our Database</h2>
+  <h2 class="mx-auto" *ngIf="!authors">Unable to Load Authors from Our Database</h2>
   <div class="row row-cols-auto">
-  <div class="card col mx-2" *ngFor="let author of authors" style="max-width: 300px; max-height: 400px;">
+  <div class="card mx-2 p-0 h-100 bg-dark" *ngFor="let author of authors" style="max-width: 300px;">
     <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="height: 200px;">
     <div class="card-body">
-      <a class="card-title h3 link-primary" routerLink="/authors/{{author.id}}">{{author.name}}</a>
-      <hr class="">
-      <div class=""><span class="card-text">Nationality: {{author.country}}</span></div>
-      <div class=""><span class="card-text">Birth Date: {{author.birthdate | date }}</span></div>
-      <hr class="">
-      <p class="card-text">{{author.bio |slice:0:50}}...</p>
+      <a class="card-title h5 link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a>
+      <hr class="hr-or">
+      <div class="row">
+        <div class="col-md-6"><span class="card-text">Nationality: {{author.country}}</span></div>
+        <div class="col-md-6"><span class="card-text">Birth Date: {{author.birthdate | date }}</span></div>
+      </div>
+      <hr class="hr-or">
     </div>
 </div>
 </div>

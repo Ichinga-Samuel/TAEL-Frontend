@@ -26,11 +26,12 @@ import { ReviewComponent } from './review/review.component';
 import { FooterComponent } from './footer/footer.component';
 
 //import { reducers, metaReducers } from './reducers';
-import {notifyReducer, userReducer, authorsReducer, booksReducer} from "./state";
+import {notifyReducer, userReducer, authorsReducer, booksReducer, mainReducer, metaReducers} from "./state";
 import {UserEffects, BooksEffects, AuthorsEffects} from "./state";
 
 import { SizePipe } from './size.pipe';
 
+import {httpInterceptorProviders} from "./services/backend";
 
 // @ts-ignore
 // @ts-ignore
@@ -60,12 +61,12 @@ import { SizePipe } from './size.pipe';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer}),
+    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer, app: mainReducer}, {metaReducers}),
     EffectsModule.forRoot([UserEffects, BooksEffects, AuthorsEffects]),
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [{provide:'API_URL', useValue: "http://127.0.0.1:3000"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://127.0.0.1:3000"}],
   bootstrap: [AppComponent]
 })
 

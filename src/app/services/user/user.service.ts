@@ -31,4 +31,9 @@ export class UserService {
     return this.http.get(url)
   }
 
+  test():Observable<any>{
+    let url = `${this.url}/api/test`
+    return this.http.get(url, {withCredentials: true}).pipe(map(x => x))
+  }
+
 }

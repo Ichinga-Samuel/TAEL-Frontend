@@ -2,12 +2,14 @@
 
 <div class="container mt-5">
   <div class="row">
-    <h2 class="h5 col-md-8">The African Ebook Library</h2>
-    <div class="row col-md-4">
-      <div class="col-md-5">
-        <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded" placeholder="Search book by title or author">
-      </div>
-      <button (click)="submit(newquery.value)" class="btn-dark col-auto px-1 rounded-1">Search</button>
+    <h2 class="h5 col-auto col-md-6 col-sm-6 col-lg-6">The African Ebook Library</h2>
+    <div class="row col-auto  ms-lg-auto ms-sm-0 ms-lg-0-0">
+      <div class="col-auto my-auto">
+      <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded" placeholder="Search book by title or author">
+    </div>
+      <div class="col-auto my-auto">
+      <button (click)="submit(newquery.value)" class="btn-dark px-1 m-0 rounded-1">Search</button>
+    </div>
     </div>
   </div>
   <div class="col-12 m-2">

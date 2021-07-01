@@ -1,15 +1,15 @@
 
 
-<div class="container-fluid mx-md-5 my-5">
+<div class="container-fluid my-3 mx-auto">
   <div class="col-6 mx-auto" *ngIf="!book">Unable to load book from database</div>
   <div class="row g-0" *ngIf="book as doc" >
-  <div class="col-md-4 order-md-first order-sm-last">
+  <div class="col-md-4">
     <div class="card p-0" *ngFor="let author of doc.authors" style="max-width: 300px;">
       <img src="./assets/images/s-1.jpg" alt="{{author.name}} image" class="img-fluid card-img-top" style="max-width: 300px; max-height: 400px">
         <p class="h5 card-title mx-auto text-center "><a href="" class="link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a></p>
     </div>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8 order-lg-last order-sm-first">
     <div class="card bg-dark" style="max-width: 600px;">
     <img src="./assets/images/s-2.jpg" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
     <div class="card-body p-0 m-0">

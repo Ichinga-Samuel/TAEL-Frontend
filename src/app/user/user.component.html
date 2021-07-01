@@ -11,7 +11,7 @@
   </div>
   <div class="col-md-6">
     <form class="" [formGroup]="userReg" (ngSubmit)="register(userReg)" ngNativeValidate>
-      <div class="col-md-6 mx-auto h6" *ngIf="error">{{msg}}</div>
+      <div class="col-md-6 text-center h6 p-0" *ngIf="error">{{msg}}</div>
       <div class="row">
         <div class="col-md-6 mt-2">
           <label for="nm" class="form-label">Full Name</label>
@@ -21,10 +21,10 @@
         <div class="col-md-6 mt-2">
           <label for="em" class="form-label">Email</label>
           <input type="text" class="form-control" formControlName="email" id="em" required>
-          <div class="form-text" *ngIf="userReg.controls['email'].touched ||userReg.controls['email'].dirty">
-            <div class="form-text" *ngIf="userReg.controls['email'].hasError('required')">Email is required</div>
-            <div class="form-text" *ngIf="userReg.controls['email'].hasError('email')">Enter a valid email address</div>
-          </div>
+          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('required')">Email is required</div>
+          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('email')">Enter a valid email address</div>
+          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('emailAvailable')">Email Already Taken</div>
+
     </div>
       </div>
       <div class="row">

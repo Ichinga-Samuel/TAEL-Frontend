@@ -18,9 +18,14 @@ export const logout = createAction(
   '[Login Page] Login',
 )
 
+
 export const setUser = createAction(
   '[User Page] User',
   props<{user: User}>()
+)
+
+export const resetUser = createAction(
+  '[User Page] User'
 )
 
 export const signup = createAction(

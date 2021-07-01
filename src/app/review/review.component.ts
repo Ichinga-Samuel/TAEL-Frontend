@@ -27,7 +27,9 @@ export class ReviewComponent implements OnInit{
   send(){
     if(this.login){
       let post = {name: this.name, email: this.email, review: this.review, book: this.book, id: this.id}
-      this.store.dispatch(postReview({post}))}
+      this.store.dispatch(postReview({post}))
+      this.tb.nativeElement.value = ''
+    }
     else{
       this.popup = true
     }

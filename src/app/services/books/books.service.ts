@@ -2,10 +2,10 @@ import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Book} from "./book";
-import { map } from 'rxjs/operators';
+import {map, retry} from 'rxjs/operators';
 import {Author} from "../authors/author";
 
-interface siteSearch {
+export interface siteSearch {
   authors: Author[],
   books: Book[]
 }
@@ -53,7 +53,7 @@ export class BooksService {
 
   site_search(query: string):Observable<siteSearch>{
     let url = `${this.url}/api/search?q=${query}`;
-    return this.http.get(url).pipe(map((result: any) => {
+    return this.http.get(url).pipe(retry(3), map((result: any) => {
       let resp: siteSearch ={
         authors: [],
         books: []

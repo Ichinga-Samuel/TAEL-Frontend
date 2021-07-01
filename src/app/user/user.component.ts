@@ -7,6 +7,7 @@ import {notify} from "../state";
 import {signup, SignupState} from "../state/user/user.actions";
 import {EmailValidatorService} from "../services/user/email-validator.service";
 import {Title} from "@angular/platform-browser";
+import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-user',
@@ -18,12 +19,12 @@ export class UserComponent implements OnInit {
   public error: boolean = false;
   userReg: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidate: EmailValidatorService, private ts: Title) {
+  constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidator: EmailValidatorService, private ts: Title, private us: UserService) {
 
     let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     this.userReg = fb.group({
       name: ['', Validators.required],
-      email: ['', {updateOn: 'submit'}, [Validators.required, Validators.email, emailValidate.validate]],
+      email: ['', [Validators.required, Validators.email], emailValidator.validate.bind(this.emailValidator)],
       password: ['', Validators.compose([Validators.required, Validators.pattern(mediumRegex)])],
       cpassword: ['', Validators.required]
     }, {validators: this.confirmPassword})

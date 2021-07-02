@@ -12,7 +12,6 @@ export {UserEffects} from "./user/user.effects"
 export {AuthorsEffects} from "./authors/authors.effects"
 
 // selectors and actions
-import {logout} from "./user/user.actions"
 export {logout} from "./user/user.actions"
 export {notify} from "./notify/notify.selectors"
 export {books, selectBook, popular} from "./books/books.selectors"
@@ -40,22 +39,6 @@ export interface AppState{
   notify: Notifications,
   books: BooksState,
   authors: AuthorsState
-}
-
-export const InitialAppState: AppState = {
-  user: userInit, notify: notifyInit, books:booksInit, authors: authorsInit
-}
-
-const appReducer = createReducer(
-  InitialAppState,
-  on(logout, (state) => {
-    let ns: AppState = {...state};
-    ns.user = {...userInit}; ns.notify = {...notifyInit};
-    return ns})
-)
-
-export function mainReducer(state: AppState | undefined, action: Action){
-  return appReducer(state, action)
 }
 
 const reducers: ActionReducerMap<AppState> = {user: userReducer, notify: notifyReducer, books: booksReducer, authors: authorsReducer};

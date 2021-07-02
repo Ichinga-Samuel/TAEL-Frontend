@@ -5,17 +5,17 @@
   <div class="row g-0" *ngIf="book as doc" >
   <div class="col-md-4">
     <div class="card p-0" *ngFor="let author of doc.authors" style="max-width: 300px;">
-      <img src="./assets/images/s-1.jpg" alt="{{author.name}} image" class="img-fluid card-img-top" style="max-width: 300px; max-height: 400px">
+      <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="img-fluid card-img-top" style="max-width: 300px; max-height: 400px">
         <p class="h5 card-title mx-auto text-center "><a href="" class="link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a></p>
     </div>
   </div>
   <div class="col-md-8 order-lg-last order-sm-first">
     <div class="card bg-dark" style="max-width: 600px;">
-    <img src="./assets/images/s-2.jpg" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
+    <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
     <div class="card-body p-0 m-0">
       <p class="card-title h4 mx-auto p-2">{{doc.title}}</p>
       <hr class="hr-or">
-      <div class="d-flex justify-content-between p-2 mb-2">
+      <div class="d-flex justify-content-between p-2 my-2">
         <p class="card-text">Pages: {{doc.pages}}</p>
         <p class="card-text">Language: {{doc.language}}</p>
         <p class="card-text">Branch: {{doc.branch}}</p>
@@ -33,11 +33,11 @@
       <div class="my-2">
         <p class="card-title px-2 mx-2">Categories</p>
         <div class="d-flex flex-wrap justify-content-start px-2 mx-auto">
-          <span class="rounded-2 bg-info m-2 p-2 text-primary pointer-event" *ngFor="let genre of doc.genres">{{genre}}</span>
+          <span class="rounded-2 bg-info m-2 p-2 btn" *ngFor="let genre of doc.genres">{{genre}}</span>
         </div>
       </div>
       <div class="p-2">
-        <button class="btn-primary p-0 mx-2" (click)="down()"><a href="{{doc.fileUrl}}" class="btn btn-primary m-0 p-0" >Download</a></button>
+        <button class="btn-primary p-0 mx-2" (click)="down()"><a href="{{doc.fileUrl}}" class="btn btn-primary m-0 p-0 text-light" >Download</a></button>
       </div>
     </div>
     <div class="card-footer bg-dark">

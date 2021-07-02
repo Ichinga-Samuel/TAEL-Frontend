@@ -2,7 +2,7 @@
 <header class="bg-dark mb-0">
   <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
-    <a href="" routerLink="/home" class="navbar-brand">TAEL</a>
+    <a href="" routerLink="/home" class="navbar-brand"><img src="./assets/images/android-chrome-512x512.png" alt="" class="img-fluid" style="max-height:30px; max-width: 30px"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nsc">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -12,17 +12,16 @@
         <div class="nav-item"><a href="" class="nav-link" routerLink="/test">Novels</a></div>
         <div class="nav-item"><a href="" class="nav-link" routerLink="/textbooks">Textbooks</a></div>
         <div class="nav-item"><a href="" class="nav-link" routerLink="/shortstories">Short Stories</a></div>
-        <div class="nav-item"><button class="btn-primary" (click)="test()">Test</button></div>
       </div>
       <div class="navbar-nav">
         <div class="nav-item me-1"><a href="" role="button" class="nav-link" *ngIf="!loggedin" routerLink="/login">Login</a></div>
         <div class="nav-item me-1 dropdown my-auto" *ngIf="loggedin"><a  class="text-light dropdown-toggle text-decoration-none" role="button" data-bs-toggle="dropdown">{{user}}</a>
           <ul class="dropdown-menu dropdown-menu-dark">
-            <li class="dropdown-item">{{user}}</li>
+            <li class="dropdown-item"><a href="" class="">{{user}}</a></li>
             <li class="dropdown-item"><a role="button" class="" (click)="logout()" >Logout</a></li>
           </ul>
         </div>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu col-auto m-0">
             <li class="dropdown-item">{{user}}</li>
             <li class="dropdown-item"><a href="" class="">Logout</a></li>
           </ul>

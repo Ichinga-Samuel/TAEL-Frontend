@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, exhaustMap, map, mergeMap} from "rxjs/operators";
-import {login, setUser, signup} from "./user.actions";
+import {login, setUser, signup, logout, resetUser} from "./user.actions";
 import {Store} from "@ngrx/store";
 import {Notifications, notify} from "../notify/notify.actions";
 import {UserService} from "../../services/user/user.service";
@@ -18,7 +18,12 @@ export class UserEffects{
     ))
     )
   })
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(ofType(logout), exhaustMap(x => {this.store.dispatch(resetUser()); let Notification: Notifications = {msg: '', status: "logged out", login: false};
+    return of(notify({Notification}))
+    }))
 
+  })
   sign$ = createEffect(() => this.actions$.pipe(ofType(signup), exhaustMap(action => this.us.createUser(action.user).pipe(
     map(res => {let Notification: Notifications = {msg: `User Account Created`, status: "created", login: false}; return notify({Notification})}),
     catchError(err => {let Notification: Notifications = {msg: 'Unable to Create User Account', status: "not created", login: false}; return of(notify({Notification})) })

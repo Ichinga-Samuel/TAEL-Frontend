@@ -13,16 +13,22 @@ app-root, app-shell, app-user{
 
 .shell{
 	flex: 1 0 auto;
-  /*margin-top: auto;*/
-  background-color: black;
+  background-color: #121212;
   color: antiquewhite;
 }
+button, .btn{
+  background-color: #F80 !important;
+}
 
+a{
+  color: #F80 !important;
+}
 .footer-1{
   flex-shrink: 0;
 }
+
 .hr-or {
-    background-color: indigo;
+    background-color: darkgoldenrod;
     height: 4px;
     margin: 0px !important;
   }

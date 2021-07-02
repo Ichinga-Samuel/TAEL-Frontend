@@ -26,9 +26,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.checked = false
   }
   logout(){this.store.dispatch(logout())}
-  test(){
-    this.us.test().subscribe(x => console.log(x))
-  }
   ngOnInit(): void {
     // @ts-ignore
     this.store.select(notify).pipe(mergeMap(n => this.store.select(selectUser).pipe(map(u => {return {user:u, notifs: n}})))).subscribe(

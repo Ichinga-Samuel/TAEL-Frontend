@@ -1,10 +1,14 @@
 
 
-<div class="container mt-5">
-  <div class="row">
-    <h2 class="h5 col-auto col-md-6 col-sm-6 col-lg-6">The African Ebook Library</h2>
-    <div class="row col-auto  ms-lg-auto ms-sm-0 ms-lg-0-0">
-      <div class="col-auto my-auto">
+
+<div class="container-fluid mt-5">
+  <div class="row border-primary border mx-auto">
+    <div class="col-sm-auto col-md-6">
+      <h1 class="h3 ">The African Ebook Library</h1>
+      <h6 class="fst-italic">The Online Repository of African Literature.</h6>
+    </div>
+    <div class="row col-sm-auto  ms-lg-auto ms-sm-0 ms-lg-0 my-auto">
+      <div class="col-sm-auto">
       <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded" placeholder="Search book by title or author">
     </div>
       <div class="col-auto my-auto">
@@ -12,9 +16,12 @@
     </div>
     </div>
   </div>
-  <div class="col-12 m-2">
+  <div class="row">
+     <div class="col-12 m-2">
     <app-book-list [books]="books" [caption]="caption" *ngIf="books.length"></app-book-list>
   </div>
+  </div>
+
 </div>
 
 

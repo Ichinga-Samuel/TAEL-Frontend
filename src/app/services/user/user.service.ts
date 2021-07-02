@@ -26,14 +26,10 @@ export class UserService {
     let url = `${this.url}/auth/login`
     return this.http.post(url, body).pipe(map(x => new User(x)))
   }
+
   emailValidate(value: string):Observable<any> {
     let url = `${this.url}/users/validate_email/${value}`
     return this.http.get(url)
-  }
-
-  test():Observable<any>{
-    let url = `${this.url}/api/test`
-    return this.http.get(url, {withCredentials: true}).pipe(map(x => x))
   }
 
 }

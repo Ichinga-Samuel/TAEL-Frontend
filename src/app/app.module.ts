@@ -26,7 +26,7 @@ import { ReviewComponent } from './review/review.component';
 import { FooterComponent } from './footer/footer.component';
 
 //import { reducers, metaReducers } from './reducers';
-import {notifyReducer, userReducer, authorsReducer, booksReducer, mainReducer, metaReducers} from "./state";
+import {notifyReducer, userReducer, authorsReducer, booksReducer, metaReducers} from "./state";
 import {UserEffects, BooksEffects, AuthorsEffects} from "./state";
 
 import { SizePipe } from './size.pipe';
@@ -61,7 +61,7 @@ import {httpInterceptorProviders} from "./services/backend";
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer, app: mainReducer}, {metaReducers}),
+    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer}, {metaReducers}),
     EffectsModule.forRoot([UserEffects, BooksEffects, AuthorsEffects]),
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule

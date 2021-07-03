@@ -7,7 +7,7 @@
     <div class="list-group-item" *ngFor="let rev of reviews">
       <div class="d-flex w-100 justify-content-between">
           <h6 class="">{{rev.name}}</h6>
-           <small class="">{{rev.time | date}}</small>
+           <small class="">{{rev.createdAt | date}}</small>
       </div>
       <p class="mb-1">{{rev.review}}</p>
     </div>

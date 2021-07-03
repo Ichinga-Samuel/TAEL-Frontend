@@ -66,7 +66,7 @@ import {httpInterceptorProviders} from "./services/backend";
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://127.0.0.1:3000"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "https://tael-313422.nw.r.appspot.com"}],
   bootstrap: [AppComponent]
 })
 

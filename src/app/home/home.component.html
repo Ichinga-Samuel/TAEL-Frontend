@@ -1,8 +1,6 @@
 
-
-
 <div class="container-fluid mt-5">
-  <div class="row border-primary border mx-auto">
+  <div class="row mx-auto p-md-5">
     <div class="col-sm-auto col-md-6">
       <h1 class="h3 ">The African Ebook Library</h1>
       <h6 class="fst-italic">The Online Repository of African Literature.</h6>
@@ -16,12 +14,21 @@
     </div>
     </div>
   </div>
-  <div class="row">
-     <div class="col-12 m-2">
+  <div class="py-5 row vision my-md-5">
+    <div class="col-sm-auto mx-auto col-md-8">
+      <h2 class="">Vision</h2>
+      <ul class="">
+        <li class="h6">To bring Africa's Rich Literary Culture and History to The World</li>
+        <li class="h6">Bringing the best books of Africa from different tribes, ethnic groups, languages to the digital space</li>
+        <li class="h6">Give young and aspiring writers a platform to showcase their work to the public</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-4 mb-2">
+     <div class="col-12 mx-auto">
     <app-book-list [books]="books" [caption]="caption" *ngIf="books.length"></app-book-list>
   </div>
   </div>
-
 </div>
 
 

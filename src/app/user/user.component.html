@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-md-6 mt-2">
           <label for="pw" class="form-label">Password</label>
-          <input type="text" class="form-control" formControlName="password" id="pw" required>
+          <input type="password" class="form-control" formControlName="password" id="pw" required>
           <div class="form-text"   *ngIf="userReg.controls['password'].dirty">
           <div class="form-text" *ngIf="userReg.controls['password'].hasError('required')">Password is required</div>
           <div class="form-text" *ngIf="userReg.controls['password'].hasError('pattern')">Password must have upto six characters and must include an uppercase letter or number </div>
@@ -38,7 +38,7 @@
     </div>
         <div class="col-md-6 mt-2">
           <label for="cpw" class="form-label">Confirm Password</label>
-          <input type="text" class="form-control" formControlName="cpassword" id="cpw" required>
+          <input type="password" class="form-control" formControlName="cpassword" id="cpw" required>
           <div class="form-text" *ngIf="userReg.errors?.noMatch && userReg.controls['cpassword'].dirty">Password must match</div>
         </div>
       </div>

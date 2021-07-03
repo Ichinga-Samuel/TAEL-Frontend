@@ -1,9 +1,17 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 /* You can add global styles to this file, and also import other style files */
+html {
+    box-sizing: border-box;
+}
 
 html, body, app-root, app-shell, app-user{
 	height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 app-root, app-shell, app-user{

@@ -32,10 +32,11 @@ import {UserEffects, BooksEffects, AuthorsEffects} from "./state";
 import { SizePipe } from './size.pipe';
 
 import {httpInterceptorProviders} from "./services/backend";
+import { ProfileComponent } from './profile/profile.component';
+import { NovelsComponent } from './novels/novels.component';
+import { TextbooksComponent } from './textbooks/textbooks.component';
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,9 @@ import {httpInterceptorProviders} from "./services/backend";
     AuthorsComponent,
     ReviewComponent,
     FooterComponent,
+    ProfileComponent,
+    NovelsComponent,
+    TextbooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ import {httpInterceptorProviders} from "./services/backend";
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "https://tael-313422.nw.r.appspot.com"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://localhost:3000"}],
   bootstrap: [AppComponent]
 })
 

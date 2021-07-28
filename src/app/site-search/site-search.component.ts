@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, EventEmitter, Output, ViewChild} from '@a
 import {fromEvent} from "rxjs";
 import {debounceTime, filter, map, switchMap, tap} from "rxjs/operators";
 import {Book} from "../services/books/book";
-import {addBooks} from "../state";
+import {addBooks, setBooks} from "../state";
 import {BooksService, siteSearch} from "../services/books/books.service";
 
 @Component({
@@ -15,7 +15,9 @@ export class SiteSearchComponent implements OnInit {
   @Output() check: EventEmitter<boolean> = new EventEmitter<boolean>()
   @Output() results: EventEmitter<siteSearch> = new EventEmitter<siteSearch>()
   // @ViewChild('modaltrigger') mt: ElementRef | undefined
-  // @ViewChild('res') res: ElementRef | undefined
+  @ViewChild('ss') ss: ElementRef
+    // checked = false
+    | undefined
   // checked = false
   constructor(private el: ElementRef, private bs: BooksService) { }
 
@@ -25,15 +27,16 @@ export class SiteSearchComponent implements OnInit {
   ngOnInit(): void {
     fromEvent(this.el.nativeElement, 'keyup').pipe(
       map((e:any) => e.target.value), filter((txt: string) => txt.length >= 2), debounceTime(300),
-      tap((o:any) => { this.loading.emit(true); this.check.emit(true); }),
+      tap((o:any) => { this.loading.emit(true); this.check.emit(true)}),
       switchMap((query: string) => this.bs.site_search(query))).
       subscribe((result: siteSearch) =>{
-        this.loading.emit(false)
         this.results.emit(result)
+        this.loading.emit(false)
     },
       (err:any) => {this.loading.emit(false) },
-      () => {this.loading.emit(false) }
+      () => {this.loading.emit(false);  }
     )
   }
 
 }
+

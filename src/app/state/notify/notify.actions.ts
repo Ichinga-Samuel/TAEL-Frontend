@@ -8,8 +8,14 @@ export const loginError = createAction(
   props<{loginErr: LoginState}>()
 )
 
+interface Notify{
+  msg?: string,
+  status?: string,
+  login?: boolean,
+  token?: string
+}
 
 export const notify = createAction(
   'Notification',
-  props<{Notification: Notifications}>()
+  props<{Notification: Notify}>()
 )

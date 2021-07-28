@@ -32,3 +32,8 @@ export const signup = createAction(
   '[Sign Up] Sign Up',
   props<{user:SignupState}>()
 )
+
+export const mark = createAction(
+  'User Favourites',
+  props<{title: string, uid: string}>()
+)

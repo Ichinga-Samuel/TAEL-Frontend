@@ -6,8 +6,14 @@ import {map} from "rxjs/operators";
 
 
 interface response{
-  msg: string,
-  status: boolean
+  user?: User,
+  msg?: string,
+  status?: boolean
+}
+
+interface data{
+  token: string,
+  user: User
 }
 
 @Injectable({
@@ -22,9 +28,14 @@ export class UserService {
     return this.http.post(url, body).pipe(map((res: any) => ({msg: res.msg, status: res.status})))
   }
 
-  login(body:any): Observable<User>{
+  login(body:any): Observable<data>{
     let url = `${this.url}/auth/login`
-    return this.http.post(url, body).pipe(map(x => new User(x)))
+    return this.http.post(url, body).pipe(map((res: any) => ({token: res.token, user: new User(res.user)})))
+  }
+
+  mark(body:any): Observable<response>{
+    let url = `${this.url}/users/mark`
+    return this.http.post(url, body).pipe(map((res: any) => ({msg: res.msg, user: new User(res.user)})))
   }
 
   emailValidate(value: string):Observable<any> {

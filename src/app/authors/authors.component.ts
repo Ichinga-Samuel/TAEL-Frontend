@@ -4,6 +4,7 @@ import {Author} from "../services/authors/author";
 import {Store, select} from "@ngrx/store";
 import {selectauthors} from "../state";
 import {Title} from "@angular/platform-browser";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-authors',
@@ -12,10 +13,12 @@ import {Title} from "@angular/platform-browser";
 })
 export class AuthorsComponent implements OnInit {
   authors: Author[] | undefined = undefined
+  authors$: Observable<Author[]> | undefined
   constructor(private route: ActivatedRoute, private store: Store, private ts: Title) { }
 
   ngOnInit(): void {
     this.ts.setTitle('Authors Page of The African Ebook Library')
-    this.store.select(selectauthors).subscribe(val => this.authors =val)
+    // .subscribe(val => this.authors =val)
+    this.authors$ = this.store.select(selectauthors)
   }
 }

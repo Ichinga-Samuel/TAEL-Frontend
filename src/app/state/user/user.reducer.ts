@@ -1,6 +1,6 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {User} from "../../services/user/user_object";
-import {setUser, logout, resetUser} from "./user.actions";
+import {setUser, resetUser} from "./user.actions";
 
 
 export interface UserState extends User{

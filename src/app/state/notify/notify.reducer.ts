@@ -5,7 +5,8 @@ import {notify} from "./notify.actions";
 export interface Notifications {
   msg: string,
   status: string,
-  login: boolean
+  login: boolean,
+  token: string
 }
 
 export interface LoginState {
@@ -16,7 +17,8 @@ export interface LoginState {
 export const defaultState: Notifications = {
   msg: "",
   status: "Logged out",
-  login: false
+  login: false,
+  token: ""
 }
 
 const notifyReducer = createReducer(

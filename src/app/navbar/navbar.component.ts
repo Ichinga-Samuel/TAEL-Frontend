@@ -6,6 +6,7 @@ import {siteSearch} from "../services/books/books.service";
 import {Author} from "../services/authors/author";
 import {Book} from "../services/books/book";
 import {UserService} from "../services/user/user.service";
+import {SiteSearchComponent} from "../site-search/site-search.component";
 
 
 @Component({
@@ -19,11 +20,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Input() results: siteSearch = {books: [], authors: []}
   @Input() loading: boolean = false
   @Input() checked: boolean = false
+  sr = false
   constructor(private store: Store, private us: UserService) {
   }
 
   checker(){
-    this.checked = false
+    this.checked = true
+  }
+  getResults(res:siteSearch){
+    console.log(res)
+    this.results = res
+  }
+  close(){
+    this.sr = false
   }
   logout(){this.store.dispatch(logout())}
   ngOnInit(): void {

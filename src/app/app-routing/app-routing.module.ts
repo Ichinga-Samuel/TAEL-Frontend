@@ -12,7 +12,13 @@ import {AuthorResolverService} from "../services/authors/author.resolver.service
 import {AuthorsResolverService} from "../services/authors/authors.resolver.service";
 import {BookResolverService} from "../services/books/book.resolver.service";
 import {HomeResolverService} from "../services/home/home.resolver.service";
+import {NovelsResolverService} from "../services/books/novelsresolver.service";
+import {TextbooksResolverService} from "../services/books/textbooksresolver.service";
 import {ReviewComponent} from "../review/review.component";
+import {NovelsComponent} from "../novels/novels.component";
+import {ProfileComponent} from "../profile/profile.component";
+import { TextbooksComponent } from '../textbooks/textbooks.component';
+import {AuthGuard} from "../services/user/auth.guard";
 
 const routes: Routes = [
   {path: '', component: ShellComponent,
@@ -20,7 +26,10 @@ const routes: Routes = [
      {path: 'home', component: HomeComponent, resolve: {popular: HomeResolverService}},
      {path: 'book/:id', component: BookComponent, resolve: {books: BookResolverService}, children: [{path: "review", component: ReviewComponent, outlet: 'review'}]},
      {path: 'search', component: SearchResultsComponent},
+     {path: 'textbooks', component: TextbooksComponent, resolve: {books: TextbooksResolverService}},
+     {path: 'novels', component: NovelsComponent, resolve: {books: NovelsResolverService}},
      {path: 'authors', component: AuthorsComponent, resolve: {authors: AuthorsResolverService}},
+     {path: 'profile', component: ProfileComponent, canActivate:[AuthGuard]},
      {path: 'authors/:id', component: AuthorComponent, resolve: {author: AuthorResolverService}},
      {path: '', redirectTo: 'home', pathMatch: 'full'}
    ]

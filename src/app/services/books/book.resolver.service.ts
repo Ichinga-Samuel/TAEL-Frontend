@@ -17,9 +17,15 @@ export class BookResolverService implements Resolve<Book>{
     const id = route.paramMap.get('id')!
     // @ts-ignore
     return this.store.select(selectBook).pipe(take(1), exhaustMap((book:Book) => {
-      if(!book){this.store.dispatch(getBook({id}))} return this.bs.similar(id).pipe(map((books: Book[]) => {this.store.dispatch(setBooks({books})); return books}))
+      if(!book){this.store.dispatch(getBook({id}))} return of(book)
     //  # Todo: Fix Book Recommendations
     }), catchError(() => of([])))
+
+
   }
 }
 
+// return this.store.select(selectBook).pipe(take(1), exhaustMap((book:Book) => {
+    //   if(!book){this.store.dispatch(getBook({id}))} return this.bs.similar(id).pipe(map((books: Book[]) => {this.store.dispatch(setBooks({books})); return books}))
+    // //  # Todo: Fix Book Recommendations
+    // }), catchError(() => of([])))

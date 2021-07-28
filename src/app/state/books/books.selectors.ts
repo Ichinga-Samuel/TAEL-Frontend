@@ -15,7 +15,7 @@ export const books = createSelector(
 export const popular = createSelector(
   books,
   (books) => {
-    let p = books.slice(0, 10).filter(b => b.title !== null); console.log(p.length); return p
+    let p = books.slice(0, 10).filter(b => b.title !== null); return p
   }
 )
 

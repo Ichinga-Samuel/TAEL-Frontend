@@ -1,65 +1,61 @@
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 mb-3 p-1">
 <!--  <div class="col-6 mx-auto" *ngIf="!book">Unable to load book from database</div>-->
-  <div class="container mx-auto">
-    <div class="row g-0 flex-wrap-reverse mx-3" *ngIf="book as doc" >
-  <div class="col-md-4 p-0 me-1">
-    <div class="card p-0" *ngFor="let author of doc.authors" style="max-width: 300px; max-height: 400px">
-      <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="img-fluid card-img-top">
-        <p class="h5 card-title mx-auto text-center "><a href="" class="link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a></p>
-    </div>
-  </div>
-  <div class="col-md-8 mb-2">
-    <div class="card bg-dark mx-auto">
-    <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
-    <div class="card-body p-0 m-0">
-      <p class="card-title h4 mx-auto p-2">{{doc.title}}</p>
-      <hr class="hr-or">
-      <div class="d-flex justify-content-between p-2 my-2 flex-wrap">
-        <p class="card-text">Pages: {{doc.pages}}</p>
-        <p class="card-text">Language: {{doc.language}}</p>
-        <p class="card-text">Branch: {{doc.branch}}</p>
-        <p class="card-text">First Publication: {{doc.year}}</p>
-      </div>
-      <hr class="hr-or">
-      <div class="collapse m-auto p-1 bg-white text-dark"  id="ra">
-            <h6 class="fst-italic mx-auto ">Rate This Book</h6>
-            <div class="mx-auto">
-              <span class="" *ngFor="let i of [1, 2, 3, 4, 5]"><fa-icon [icon]="favourite" (click)="rate(i)" data-bs-toggle="collapse"></fa-icon></span>
+    <div class="container row mx-auto" *ngIf="book as doc" >
+      <div class="col-auto mb-2 mx-auto">
+        <div class="card bg-dark mx-auto">
+        <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
+        <div class="card-body p-0 m-0">
+          <p class="card-title h4 mx-auto p-2">{{doc.title}}</p>
+          <hr class="hr-or">
+          <div class="d-flex justify-content-between p-2 my-2 flex-wrap">
+            <p class="card-text">Pages: {{doc.pages}}</p>
+            <p class="card-text">Language: {{doc.language}}</p>
+            <p class="card-text">Branch: {{doc.branch}}</p>
+            <p class="card-text">First Publication: {{doc.year}}</p>
+          </div>
+          <hr class="hr-or">
+          <div class=" col-3 alert alert-dark alert-dismissible m-auto p-1 text-white "  *ngIf="rater">
+                <h6 class="fst-italic mx-auto p-0">Rate This Book</h6>
+                <span class="mx-auto" *ngFor="let i of [1, 2, 3, 4, 5]"><fa-icon class="rate" [icon]="favourite" (click)="rate(i)" data-bs-dismiss="alert"></fa-icon></span>
+          </div>
+          <div class="mb-2 p-2 d-flex flex-wrap align-items-center justify-content-between">
+            <button class="btn m-1" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
+            <button class="btn  m-1" type="button" data-bs-target="#review" data-bs-toggle="collapse">Reviews</button>
+            <span class="btn m-2 p-1"><span class="fav" *ngFor="let r of ratings"><fa-icon [icon]="favourite"></fa-icon></span></span>
+            <button class="btn m-2" (click)="mark()">Favourite<fa-icon [icon]="favourite" class="text-white"  [class.fav]="fav"></fa-icon></button>
+            <button class="btn m-2" (click)="pop()">Rate</button>
+          </div>
+          <div class="p-2 m-2 card-text collapse" id="summary">{{doc.summary}}</div>
+          <div class="collapse mt-2" id="review">
+            <app-review [id]="doc.id" [book]="doc.title" [reviews]="doc.reviews"></app-review>
+          </div>
+          <div class="my-2">
+            <p class="card-title px-2 mx-2">Categories</p>
+            <div class="d-flex flex-wrap justify-content-start px-2 mx-auto">
+              <span class="rounded-2 bg-info m-2 p-1 btn" *ngFor="let genre of doc.genres">{{genre}}</span>
             </div>
+          </div>
+          <div class="p-2">
+            <button class="btn p-0 mx-2 text-white" (click)="down()"><a href="{{doc.fileUrl}}" class="m-0 p-0 text-decoration-none text-white" >Download <fa-icon [icon]="arrowDown"></fa-icon></a></button>
+          </div>
+        </div>
+        <div class="card-footer bg-dark">
+          <div class="d-flex flex-wrap justify-content-around text-light">
+            <span class="card-text">File Type: {{doc.fileType}}</span> <span class="card-text">Size: {{doc.fileSize | size}}</span> <span class="">Downloads: {{doc.downloads}}</span>
+          </div>
       </div>
-      <div class="mb-2 p-2 d-flex flex-wrap align-items-center">
-        <button class="btn mx-2" type="button" data-bs-target="#summary" data-bs-toggle="collapse">Read Summary</button>
-        <button class="btn  mx-2" type="button" data-bs-target="#review" data-bs-toggle="collapse">Reviews</button>
-        <span class="btn mx-2 p-1"><span class="fav" *ngFor="let r of ratings"><fa-icon [icon]="favourite"></fa-icon></span></span>
-        <button class="mx-2" (click)="mark()">Favourite<fa-icon [icon]="favourite" class="text-white"  [class.fav]="fav"></fa-icon></button>
-        <button class="btn mx-2" (click)="pop()" data-bs-target="#ra" data-bs-toggle="collapse">Rate</button>
       </div>
-      <div class="p-2 m-2 card-text collapse" id="summary">{{doc.summary}}</div>
-      <div class="collapse mt-2" id="review">
-        <app-review [id]="doc.id" [book]="doc.title" [reviews]="doc.reviews"></app-review>
       </div>
-      <div class="my-2">
-        <p class="card-title px-2 mx-2">Categories</p>
-        <div class="d-flex flex-wrap justify-content-start px-2 mx-auto">
-          <span class="rounded-2 bg-info m-2 p-1 btn" *ngFor="let genre of doc.genres">{{genre}}</span>
+      <div class="col-auto p-0 mx-auto">
+        <div class="card p-0" *ngFor="let author of doc.authors" style="max-width: 300px; max-height: 400px">
+          <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="img-fluid card-img-top">
+            <p class="h5 card-title mx-auto text-center "><a href="" class="link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a></p>
         </div>
       </div>
-      <div class="p-2">
-        <button class="btn p-0 mx-2" (click)="down()"><a href="{{doc.fileUrl}}" class="btn m-0 p-0 text-decoration-none" >Download <fa-icon [icon]="arrowDown"></fa-icon></a></button>
-      </div>
     </div>
-    <div class="card-footer bg-dark">
-      <div class="d-flex flex-wrap justify-content-around text-light">
-        <span class="card-text">File Type: {{doc.fileType}}</span> <span class="card-text">Size: {{doc.fileSize | size}}</span> <span class="">Downloads: {{doc.downloads}}</span>
-      </div>
-  </div>
-  </div>
-  </div>
-</div>
-  </div>
-  <div class="mb-3 mt-2">
+  <div class="container col-auto mt-2 mx-2">
     <app-book-list [books]="similar" [caption]="caption" *ngIf="similar.length">
-</app-book-list>
+  </app-book-list>
   </div>
 </div>

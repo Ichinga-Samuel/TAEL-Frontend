@@ -25,16 +25,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   checker(){
-    this.checked = true
+    this.checked = false
   }
-  getResults(res:siteSearch){
-    console.log(res)
-    this.results = res
-  }
-  close(){
-    this.sr = false
-  }
+  // getResults(res:siteSearch){
+  //   console.log(res)
+  //   this.results = res
+  // }
+  // close(){
+  //   this.sr = false
+  // }
   logout(){this.store.dispatch(logout())}
+
   ngOnInit(): void {
     // @ts-ignore
     this.store.select(notify).pipe(mergeMap(n => this.store.select(selectUser).pipe(map(u => {return {user:u, notifs: n}})))).subscribe(

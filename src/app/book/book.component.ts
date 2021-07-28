@@ -39,6 +39,8 @@ export class BookComponent implements OnInit{
 
   rate(i:number){
      let id = this.book?.id
+    this.rater = !this.rater
+
      // @ts-ignore
     this.store.dispatch(rateBook({id:id, rating:i}))
   }

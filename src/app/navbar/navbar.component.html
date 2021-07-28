@@ -25,15 +25,15 @@
             <li class="dropdown-item">{{user}}</li>
             <li class="dropdown-item"><a href="" class="">Logout</a></li>
           </ul>
-        <div class="nav-item me-1"><app-site-search (results)="getResults($event)" (loading)="sr=loading=$event" (check)="sr=$event"></app-site-search></div>
+        <div class="nav-item me-1"><app-site-search (results)="results=$event" (loading)="loading=$event" (check)="checked=$event"></app-site-search></div>
       </div>
     </div>
   </div>
 </nav>
 </header>
-<div class="container-fluid bg-dark text-light m-0 p-0"  #res>
-  <div class="col-1 offset-11"><button class="btn-close  bg-white" (click)="close()"#chk></button></div>
-  <h5 class="fst-italic text-light" >Searching...</h5>
+<div class="container-fluid bg-dark text-light m-0 p-0" *ngIf="checked"  #res>
+  <div class="col-1 offset-11"><button class="btn-close  bg-white" (click)="checker()"#chk></button></div>
+  <h5 class="fst-italic text-light" *ngIf="loading">Searching...</h5>
   <div class="d-flex justify-content-around">
     <div class=""  *ngIf="results.books && results.books.length">
     <h5 class="text-decoration-underline">Books</h5>

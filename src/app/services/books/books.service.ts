@@ -56,14 +56,13 @@ export class BooksService {
 
   site_search(query: string):Observable<siteSearch>{
     let url = `${this.url}/api/search?q=${query}`;
-    return this.http.get(url).pipe(map((result: any) => {
+    return this.http.get(url).pipe(map((res: any) => {
       let resp: siteSearch ={
         authors: [],
         books: []
       }
-      result.authors.map((res: any) => resp.authors.push(new Author(res)))
-      result.books.map((res: any) => resp.books.push(new Book(res)))
-      console.log(resp)
+      res.data.authors.map((res: any) => resp.authors.push(new Author(res)))
+      res.data.books.map((res: any) => resp.books.push(new Book(res)))
       return resp
     }))
   }

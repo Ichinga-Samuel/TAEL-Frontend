@@ -2,7 +2,7 @@
 <div class="container-fluid mt-5 mb-3 p-1">
 <!--  <div class="col-6 mx-auto" *ngIf="!book">Unable to load book from database</div>-->
     <div class="container row mx-auto" *ngIf="book as doc" >
-      <div class="col-auto mb-2 mx-auto">
+      <div class="col-5 mb-2 me-2 offset-3">
         <div class="card bg-dark mx-auto">
         <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="max-height:400px">
         <div class="card-body p-0 m-0">
@@ -47,7 +47,7 @@
       </div>
       </div>
       </div>
-      <div class="col-auto p-0 mx-auto">
+      <div class="col-3 p-0 ">
         <div class="card p-0" *ngFor="let author of doc.authors" style="max-width: 300px; max-height: 400px">
           <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="img-fluid card-img-top">
             <p class="h5 card-title mx-auto text-center "><a href="" class="link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a></p>

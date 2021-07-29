@@ -79,7 +79,6 @@ export class BookComponent implements OnInit{
      }
     }
 
-
     this.ts.setTitle(this.title)
     if(this.login){
       this.store.select(selectUser).subscribe(data => {

@@ -70,7 +70,7 @@ import { TextbooksComponent } from './textbooks/textbooks.component';
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://localhost:3000"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "https://tael-backend.ew.r.appspot.com"}],
   bootstrap: [AppComponent]
 })
 

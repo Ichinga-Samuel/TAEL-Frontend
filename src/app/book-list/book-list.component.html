@@ -1,14 +1,15 @@
 
 
-<div class="container-fluid">
-  <h2 class="text-capitalize h5">{{caption}}</h2>
-  <div class="row row-cols-auto mx-auto">
-    <div class="col card h-100 p-0 m-1 "  style="max-width: 200px;" *ngFor="let book of books">
-      <img src="{{book.imageUrl}}" alt="{{book.title}} image" class="card-img-top img-fluid" style="max-width: 200px; max-height: 200px">
-      <div class="card-title p-0">
-        <a class="p-0 text-center h6 link-primary text-decoration-none" style="font-size: small" routerLink="/book/{{book.id}}">{{book.title.slice(0, 30)}}</a>
-      </div>
+<h2 class="text-capitalize h5">{{caption}}</h2>
+<div class="row row-cols-auto gap-1">
+  <div class="col" *ngFor="let book of books">
+    <div class="card h-100"  style="width: 200px;">
+    <img src="{{book.imageUrl}}" alt="{{book.title}} image" class="card-img-top img-fluid" style="height: 200px">
+    <div class="card-title p-0">
+      <a class="p-0 text-center h6 text-decoration-none" style="font-size: small" routerLink="/book/{{book.id}}">{{book.title.slice(0, 30)}}</a>
     </div>
+  </div>
+  </div>
 </div>
-</div>
+
 

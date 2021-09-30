@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
   checkLogin(){
     let login = false
     this.store.pipe(select(notify)).subscribe(val => {
-      login = val.login;
+      login = val.login || false;
     })
     if(login){
       return login

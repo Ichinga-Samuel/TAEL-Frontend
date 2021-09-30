@@ -8,7 +8,8 @@ import {map} from "rxjs/operators";
 interface response{
   user?: User,
   msg?: string,
-  status?: boolean
+  status?: boolean,
+  token?: string
 }
 
 interface data{
@@ -28,9 +29,23 @@ export class UserService {
     return this.http.post(url, body).pipe(map((res: any) => ({msg: res.msg, status: res.status})))
   }
 
-  login(body:any): Observable<data>{
+  login(body:any): Observable<response>{
     let url = `${this.url}/auth/login`
-    return this.http.post(url, body).pipe(map((res: any) => ({token: res.token, user: new User(res.user)})))
+    return this.http.post(url, body).pipe(map((res: any) => {
+      let ans: response = {msg: res.msg, status: res.status}
+      if(res.user && res.token){ans.user = new User(res.user); ans.token = res.token}
+      return ans
+  }))
+  }
+
+  resetEmail(email: string): Observable<response>{
+    let url = `${this.url}/users/reset_password`
+    return this.http.post(url, {email: email}).pipe(map((res: any) => ({msg: res.msg, status: res.status})))
+  }
+
+  reset(body: any): Observable<response>{
+    let url = `${this.url}/users/change_password`
+    return this.http.post(url, body).pipe(map((res: any) => ({msg: res.msg, status: res.status})))
   }
 
   mark(body:any): Observable<response>{

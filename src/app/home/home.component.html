@@ -1,16 +1,14 @@
 
 <div class="container-fluid mt-5 mb-3">
-  <div class="row mx-auto p-md-5">
-    <div class="col-sm-auto col-md-6">
-      <h1 class="h3 ">The African Ebook Library</h1>
+  <div class="row row-cols-2 mx-auto p-md-5">
+    <div class="col-md-7 col-auto gap-1">
+      <h1 class="h3 ">The African Ebook Library.</h1>
       <h6 class="fst-italic">The Online Repository of African Literature.</h6>
     </div>
-    <div class="row col-sm-auto  ms-lg-auto ms-sm-0 ms-lg-0 my-auto">
-      <div class="col-sm-auto">
-      <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control border rounded" placeholder="Search book by title or author">
-    </div>
-      <div class="col-auto my-auto">
-      <button (click)="submit(newquery.value)" class="btn-dark px-1 m-0 rounded-1">Search</button>
+    <div class="col-md-5 col-auto ">
+       <div class="d-flex">
+      <input type="text" #newquery (keydown.enter)="submit(newquery.value)" class="form-control rounded-1" placeholder="Search book by title or author">
+      <button (click)="submit(newquery.value)" class="btn rounded-1">Search</button>
     </div>
     </div>
   </div>
@@ -24,11 +22,10 @@
       </ul>
     </div>
   </div>
+</div>
 
-   <div class="col-12 mx-auto">
-    <app-book-list [books]="books" [caption]="caption" *ngIf="books.length"></app-book-list>
-  </div>
-
+<div class="container-fluid mx-auto mb-3 px-md-5">
+  <app-book-list [books]="books" [caption]="caption" *ngIf="books.length"></app-book-list>
 </div>
 
 

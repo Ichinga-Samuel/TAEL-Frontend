@@ -15,8 +15,6 @@ import {UserService} from "../services/user/user.service";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  msg: string = '';
-  public error: boolean = false;
   userReg: FormGroup;
 
   constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidator: EmailValidatorService, private ts: Title, private us: UserService) {
@@ -40,17 +38,17 @@ export class UserComponent implements OnInit {
     if(form.valid){
       let user:SignupState = form.value;
       this.store.dispatch(signup({user}))
-      this.store.pipe(select(notify)).subscribe(value => {this.msg = value.msg; this.error = (value.status==='not created')})
     }
   }
 
   ngOnInit(): void {
     this.ts.setTitle('Sign up Page of The African Ebook Library')
-    // @ts-ignore
-    this.store.pipe(select(notify)).subscribe(
-      value => {if(value.status==='created'){this.router.navigate(['/login'])}
+    this.store.select(notify).subscribe(res => {
+      if(res.status === 'created'){
+        this.router.navigate(['/login'])
       }
-    )
+    })
+    // @ts-ignore
   }
 
 }

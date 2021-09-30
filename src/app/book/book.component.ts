@@ -1,11 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Book} from "../services/books/book";
-import {Store} from "@ngrx/store";
+import {Store, select} from "@ngrx/store";
+import {combineLatest, map} from 'rxjs/operators';
 import {selectBook, setBooks, updateDownloads, notify, mark, selectUser, rateBook} from "../state";
 import {Title} from "@angular/platform-browser";
 import {faArrowDown, faStar} from "@fortawesome/free-solid-svg-icons";
-import {User} from "../services/user/user_object";
 
 
 @Component({
@@ -18,13 +18,12 @@ export class BookComponent implements OnInit{
   favourite = faStar
   fav = false
   book: Book | undefined
-  user: User | undefined
+  uid = ''
   rater = false
   similar: Book[] = []
   caption: string = "Similar Books"
   title = ''
   ratings: number[] = []
-  login = false
   constructor(private route: ActivatedRoute, private store: Store, private ts: Title) {
   }
   down(){
@@ -38,56 +37,28 @@ export class BookComponent implements OnInit{
   }
 
   rate(i:number){
-     let id = this.book?.id
     this.rater = !this.rater
-
-     // @ts-ignore
-    this.store.dispatch(rateBook({id:id, rating:i}))
+    if(this.book?.id)this.store.dispatch(rateBook({id: this.book?.id, rating:i}))
   }
 
   mark(){
-    // @ts-ignore
-    let title = this.book.title
-    // @ts-ignore
-    if(this.user.id){
-      // @ts-ignore
-      let uid = this.user.id
-    this.store.dispatch(mark({title, uid}))
-    this.store.select(selectUser).subscribe(data => {
-        this.user = data.id !== '' ? data: undefined;
-        // @ts-ignore
-        for(let b of this.user?.favourites){
-          if(title === b.title){this.fav = true; break}
-          this.fav = false
-        }
-    })
-    }
+    if(this.uid && this.book?.title){
+    this.store.dispatch(mark({title:this.book.title, uid: this.uid}))
+    }}
 
-
-  }
   ngOnInit(): void {
-    this.store.select(notify).subscribe(val => this.login = val.login)
-    this.store.select(selectBook).subscribe(book => {this.book = book; this.title = book?.title || ''; this.ts.setTitle(this.title);
+    this.store.select(selectBook).pipe(combineLatest(this.store.select(selectUser))).pipe(map(x => x)).subscribe(data => {
+      this.book = data[0]; this.title = this.book?.title || ''; this.ts.setTitle(this.title);
       // @ts-ignore
-      this.similar = book?.similar !== undefined ? book.similar : []
-    })
-
-    if(this.book){
+      this.similar = this.book?.similar || []
       this.ratings = []
-    for(let r=0; r<this.book.ratings; r++){
-       this.ratings.push(r)
-     }
-    }
-
-    this.ts.setTitle(this.title)
-    if(this.login){
-      this.store.select(selectUser).subscribe(data => {
-        this.user = data.id !== '' ? data: undefined;
-        // @ts-ignore
-        for(let b of this.user?.favourites){
+      if(this.book){for(let r=0; r<this.book.ratings; r++){this.ratings.push(r)}}
+      if(data[1].favourites && data[1].id){
+        this.uid = data[1].id
+        for(let b of data[1].favourites){
           if(this.book?.title === b.title){this.fav = true; break}
-        }
-    })
-    }
+          this.fav = false
+      }}
+      })
   }
 }

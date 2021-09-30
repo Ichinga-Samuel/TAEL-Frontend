@@ -1,7 +1,10 @@
 
 <div class="shell">
-  <app-navbar></app-navbar>
-  <router-outlet></router-outlet>
+  <app-navbar class="shell-head"></app-navbar>
+    <div class="container mx-auto mt-3">
+    <app-alert></app-alert>
+  </div>
+    <router-outlet></router-outlet>
 </div>
 <div class="footer-1">
   <app-footer></app-footer>

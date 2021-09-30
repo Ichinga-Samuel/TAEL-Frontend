@@ -18,6 +18,7 @@ import {ReviewComponent} from "../review/review.component";
 import {NovelsComponent} from "../novels/novels.component";
 import {ProfileComponent} from "../profile/profile.component";
 import { TextbooksComponent } from '../textbooks/textbooks.component';
+import { PasswordResetComponent } from "../password-reset/password-reset.component";
 import {AuthGuard} from "../services/user/auth.guard";
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   },
 
   {path: 'login', component: LoginComponent},
+  {path: 'reset_password/:token', component: PasswordResetComponent},
   {path: 'signup', component: UserComponent}
 ]
 

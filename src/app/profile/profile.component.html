@@ -1,23 +1,23 @@
 
-<section class="container-fluid mt-5 p-0 m-0">
+<section class="container-fluid my-5 p-0">
   <div class="container mx-auto p-2 rounded-2">
     <div class="profile m-auto position-relative p-0">
       <p class="nm m-auto p-0 top-50 start-50 position-absolute translate-middle">{{user.email|slice:0:2|uppercase}}</p>
     </div>
     <div class="d-flex justify-content-center mt-2 mx-auto">
-      <span class="me-2 nm fs-5 fst-italic">{{user.name}}</span>
-      <span class="nm fs-5 fst-italic">{{user.email}}</span>
+      <p class="me-2 nm fs-5 fst-bold">{{user.name}}</p>
     </div>
-    <div class="d-flex justify-content-around mx-auto">
-      <span class="nm"><fa-icon [icon]="facebook"></fa-icon></span>
-      <span class="nm"><fa-icon [icon]="twitter"></fa-icon></span>
-      <span class="nm"><fa-icon [icon]="instagram"></fa-icon></span>
-    </div>
-    <div class="d-flex justify-content-end p-0">
-      <button class="btn">Edit Profile <fa-icon [icon]="userEdit"></fa-icon></button>
-    </div>
+    <button class="btn d-block ms-auto">Edit Profile <fa-icon [icon]="userEdit"></fa-icon></button>
+
   </div>
-  <div class="col-12 mx-auto mt-2">
+  <div class="mx-auto p-4">
     <app-book-list [books]="user.favourites" [caption]="caption" *ngIf="user.favourites.length"></app-book-list>
   </div>
 </section>
+
+<!--<div class="d-flex justify-content-around mx-auto">-->
+<!--<span class="nm fs-5 fst-italic">{{user.email}}</span>-->
+<!--      <span class="nm"><fa-icon [icon]="facebook"></fa-icon></span>-->
+<!--      <span class="nm"><fa-icon [icon]="twitter"></fa-icon></span>-->
+<!--      <span class="nm"><fa-icon [icon]="instagram"></fa-icon></span>-->
+<!--</div>-->

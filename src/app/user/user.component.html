@@ -1,57 +1,48 @@
 
 <div class="shell">
-  <div class="col-12 mx-0 p-0" style="background-color: #121212">
-    <p class="navbar-brand text-center" role="banner"><a href="" class="link-primary text-decoration-none" routerLink="/home">The African Ebook Library</a></p>
+  <nav class="px-5 py-2 navbar">
+    <h1 class="navbar-brand text-center mx-auto" role="banner"><a href="" class="text-decoration-none" routerLink="/home">The African Ebook Library</a></h1>
+  </nav>
+  <div class="container mx-auto">
+    <app-alert></app-alert>
   </div>
   <div class="row container-fluid">
-  <div class="col-md-6">
-    <div class="">
-      <img src="./assets/images/bg-image.jpg.png" alt="" class="img-fluid">
-    </div>
+  <div class="col-md-6 d-md-block d-none">
+    <img src="./assets/images/bg-image.jpg.png" alt="" class="img-fluid">
   </div>
-  <div class="col-md-6">
-    <form class="" [formGroup]="userReg" (ngSubmit)="register(userReg)" ngNativeValidate>
-      <div class="col-md-6 text-center h6 p-0" *ngIf="error">{{msg}}</div>
-      <div class="row">
-        <div class="col-md-6 mt-2">
-          <label for="nm" class="form-label">Full Name</label>
-          <input type="text" class="form-control" formControlName="name" id="nm" required>
-          <div class="form-text" *ngIf="userReg.controls['name'].touched && userReg.controls['name'].hasError('required')">Name is Required</div>
-        </div>
-        <div class="col-md-6 mt-2">
-          <label for="em" class="form-label">Email</label>
-          <input type="text" class="form-control" formControlName="email" id="em" required>
-          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('required')">Email is required</div>
-          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('email')">Enter a valid email address</div>
-          <div class="form-text" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('emailAvailable')">Email Already Taken</div>
-
-    </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mt-2">
-          <label for="pw" class="form-label">Password</label>
-          <input type="password" class="form-control" formControlName="password" id="pw" required>
-          <div class="form-text"   *ngIf="userReg.controls['password'].dirty">
-          <div class="form-text" *ngIf="userReg.controls['password'].hasError('required')">Password is required</div>
-          <div class="form-text" *ngIf="userReg.controls['password'].hasError('pattern')">Password must have upto six characters and must include an uppercase letter or number </div>
-        </div>
-    </div>
-        <div class="col-md-6 mt-2">
-          <label for="cpw" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" formControlName="cpassword" id="cpw" required>
-          <div class="form-text" *ngIf="userReg.errors?.noMatch && userReg.controls['cpassword'].dirty">Password must match</div>
-        </div>
-      </div>
-    <div class="row mt-2">
+  <form class="col-md-6 col-auto" [formGroup]="userReg" (ngSubmit)="register(userReg)" ngNativeValidate>
+    <div class="row">
       <div class="col-md-6 mt-2">
-      <button type="submit" class="btn-primary px-1 rounded-1 ">Submit</button>
+        <label for="nm" class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="name" id="nm" required>
+        <p class="form-text text-warning" *ngIf="userReg.controls['name'].touched && userReg.controls['name'].hasError('required')">Name is Required</p>
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="em" class="form-label">Email</label>
+        <input type="form-text text-warning" class="form-control" formControlName="email" id="em" required>
+        <p class="form-text text-warning" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('required')">Email is required</p>
+        <p class="form-text text-warning" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('email')">Enter a valid email address</p>
+        <p class="form-text text-warning" *ngIf="userReg.controls['email'].touched && userReg.controls['email'].hasError('emailAvailable')">Email Already Taken</p>
+      </div>
     </div>
-    <div class="col-md-6">
-      <p class="">Already have an account ?<a href="" class="link-info" routerLink="/login">login</a></p>
+    <div class="row">
+      <div class="col-md-6 mt-2">
+        <label for="pw" class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="pw" required>
+        <ng-container class=""   *ngIf="userReg.controls['password'].dirty">
+          <p class="form-text text-warning" *ngIf="userReg.controls['password'].hasError('required')">Password is required</p>
+          <p class="form-text text-warning" *ngIf="userReg.controls['password'].hasError('pattern')">Password must have upto six characters and must include an uppercase letter or number </p>
+        </ng-container>
+      </div>
+      <div class="col-md-6 mt-2">
+        <label for="cpw" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="cpassword" id="cpw" required>
+        <p class="form-text text-warning" *ngIf="userReg.errors?.noMatch && userReg.controls['cpassword'].dirty">Password must match</p>
+      </div>
     </div>
-    </div>
+    <button type="submit" class="btn d-block ms-auto mt-2">Submit</button>
+    <p class="text-center">Already have an account ?<a href="" class="link-info" routerLink="/login">login</a></p>
   </form>
-  </div>
 </div>
 </div>
 

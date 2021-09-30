@@ -17,7 +17,6 @@ export class AuthorComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(selectauthor).subscribe(author => {
-
       // @ts-ignore
       this.author = author; this.title = author?.name})
     this.ts.setTitle(this.title)

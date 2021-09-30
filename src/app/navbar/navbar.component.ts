@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Store, select} from "@ngrx/store";
-import {logout, notify, selectUser} from "../state";
+import {logout, notify, selectUser, resetUser, notifi} from "../state";
 import {mergeMap, map} from "rxjs/operators";
 import {siteSearch} from "../services/books/books.service";
 import {Author} from "../services/authors/author";
@@ -23,24 +23,23 @@ export class NavbarComponent implements OnInit, OnDestroy {
   sr = false
   constructor(private store: Store, private us: UserService) {
   }
-
   checker(){
     this.checked = false
   }
-  // getResults(res:siteSearch){
-  //   console.log(res)
-  //   this.results = res
-  // }
-  // close(){
-  //   this.sr = false
-  // }
-  logout(){this.store.dispatch(logout())}
+  logout(){
+    // this.store.dispatch(logout())
+    this.store.dispatch(resetUser())
+    this.store.dispatch(notifi({Notification: {notice: 'You have Logged Out', status: "logged out", login: false, alert: "alert-info", token: ''}}))
+  }
 
   ngOnInit(): void {
     // @ts-ignore
     this.store.select(notify).pipe(mergeMap(n => this.store.select(selectUser).pipe(map(u => {return {user:u, notifs: n}})))).subscribe(
+
       data =>  {// @ts-ignore
-        this.user = data.user.name; this.loggedin=data.notifs.login;}
+        this.user = data.user.name; this.loggedin=data.notifs.login;
+      }
+
     )
   }
   ngOnDestroy() {

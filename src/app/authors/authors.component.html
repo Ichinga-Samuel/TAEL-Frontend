@@ -1,20 +1,23 @@
 
-<div class="container mt-5 p-0 mx-auto mb-3">
-  <h2 class="mx-auto" *ngIf="authors$">Authors in Our Database</h2>
+<div class="container-fluid px-5 my-5 mx-auto">
+  <h2 class="m-3" *ngIf="authors$">African Authors</h2>
 <!--  <h2 class="mx-auto" *ngIf="!authors?.length">Unable to Load Authors from Our Database</h2>-->
-  <div class="row row-cols-auto mx-auto">
-  <div class="col-auto card m-2 p-0 h-100 bg-dark" *ngFor="let author of authors$ | async" style="max-width: 300px;">
-    <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="height: 200px;">
-    <div class="card-body">
-      <a class="card-title h5 link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a>
-      <hr class="hr-or">
-      <div class="row">
-        <div class="col-md-6"><span class="card-text">Nationality: {{author.country}}</span></div>
-        <div class="col-md-6"><span class="card-text">Birth Date: {{author.birthdate | date }}</span></div>
-      </div>
-      <hr class="hr-or">
-    </div>
+  <div class="row row-cols-auto mx-auto gap-2">
+    <div class="col" *ngFor="let author of authors$ | async" >
+      <div class="card h-100 sec" style="width: 300px;">
+        <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="height: 200px;">
+        <div class="card-body">
+          <a class="card-title h5 link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a>
+          <hr class="hr-or">
+          <div class="d-flex justify-content-between">
+            <span class="card-text">{{author.country}}</span>
+            <span class="card-text">{{author.birthdate | date }}</span>
+          </div>
+          <hr class="hr-or">
+        </div>
 </div>
+    </div>
+
 </div>
 </div>
 

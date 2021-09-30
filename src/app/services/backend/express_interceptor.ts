@@ -14,18 +14,11 @@ export class ExpressInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler){
     let token = "";
-    this.store.pipe(select(notify)).subscribe(state => token = state.token)
-    if(token){
-       const nr = req.clone({
-      setHeaders: {Authorization: `Bearer ${token}`}
+    this.store.pipe(select(notify)).subscribe(state => token = state.token || '')
+
+    const nr = req.clone({
+    setHeaders: {Authorization: `Bearer ${token}`, From: `${window.location.protocol}//${window.location.host}`}
     })
       return next.handle(nr)
     }
-    else{
-      return next.handle(req)
-    }
-
-
-  }
-
 }

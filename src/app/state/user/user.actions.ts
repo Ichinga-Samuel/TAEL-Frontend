@@ -9,6 +9,12 @@ export interface SignupState{
   cpassword: string,
 }
 
+export interface PwdReset{
+  token: string,
+  password: string,
+  cpassword: string,
+}
+
 export const login = createAction(
   '[Login Page] Login',
   props<{email: string; password: string}>()
@@ -26,6 +32,16 @@ export const setUser = createAction(
 
 export const resetUser = createAction(
   '[User Page] User'
+)
+
+export const reset = createAction(
+  '[Reset Password] Reset',
+  props<{state: PwdReset}>()
+)
+
+export const resetEmail = createAction(
+  '[Reset Email] Reset',
+  props<{email: string}>()
 )
 
 export const signup = createAction(

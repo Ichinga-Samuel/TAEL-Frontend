@@ -1,24 +1,18 @@
 import {on, Action, createReducer} from "@ngrx/store";
-import {notify} from "./notify.actions";
+import {notify, Notify} from "./notify.actions";
 
 
-export interface Notifications {
-  msg: string,
-  status: string,
-  login: boolean,
-  token: string
-}
+export interface Notifications extends Notify{
 
-export interface LoginState {
-  msg: string,
-  login: boolean,
 }
 
 export const defaultState: Notifications = {
   msg: "",
-  status: "Logged out",
+  status: "",
   login: false,
-  token: ""
+  token: "",
+  notice: "",
+  alert: 'alert-primary'
 }
 
 const notifyReducer = createReducer(

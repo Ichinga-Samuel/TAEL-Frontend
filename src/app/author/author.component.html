@@ -1,23 +1,19 @@
-<div class="container-fluid m-0 p-0 mt-5 mb-3" *ngIf="author as author">
-  <div class="container mb-3 mx-auto" >
-  <div class="card bg-dark mx-auto" style="max-width: 600px; ">
+<div class="container-fluid my-5 p-0" *ngIf="author as author">
+  <div class="card mx-auto sec" style="max-width: 800px; ">
     <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="max-height: 400px">
     <div class="card-body">
-      <h3 class="card-title h3">{{author.name}}</h3>
-      <hr class="hr-or">
-      <div class="card-text"><span class="">Nationality: {{author.country}}</span></div>
-      <hr class="hr-or">
-      <div class="card-text mb-2"><span class="p3">Birth Date: {{author.birthdate | date }}</span></div>
-      <button class="btn" data-bs-target="#bio" data-bs-toggle="collapse">Read Bio</button>
+      <div class="d-flex justify-content-between">
+        <h3 class="card-title h3">{{author.name}}</h3>
+        <button class="btn" data-bs-target="#bio" data-bs-toggle="collapse">Read Bio</button>
+      </div>
       <div class="collapse mt-2" id="bio">
         <h6 class="card-title mx-auto">Brief Bio</h6>
         <div class="card-text">{{author.bio}}</div>
       </div>
     </div>
   </div>
-</div>
   <hr class="hr-or">
-  <div class="col-12 my-3 container">
+  <div class="col px-5 mt-2">
     <app-book-list [books]="author.books" caption="Books By {{author.name}}" *ngIf="author.books.length"></app-book-list>
   </div>
 </div>

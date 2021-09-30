@@ -11,10 +11,17 @@
 
 
 .fav{
-  background-color: #F80;
-  color: red;
+  color: #F80;
 }
+
 span fa-icon.rate:hover{
   background-color: #F80;
-  color: red;
+}
+
+span fa-icon.rate{
+  color: white;
+}
+
+button fa-icon{
+  color: green;
 }

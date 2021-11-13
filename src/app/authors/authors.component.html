@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <div class="container-fluid px-md-5 mx-sm-auto mx-md-5 mt-4">
   <h2 class="mx-auto" *ngIf="authors?.length">Authors in Our Database</h2>
   <h2 class="mx-auto" *ngIf="!authors?.length">Unable to Load Authors from Our Database</h2>
@@ -14,7 +15,27 @@
       </div>
       <hr class="hr-or">
     </div>
+=======
+<div class="container-fluid px-5 my-5 mx-auto">
+  <h2 class="m-3" *ngIf="authors$">African Authors</h2>
+<!--  <h2 class="mx-auto" *ngIf="!authors?.length">Unable to Load Authors from Our Database</h2>-->
+  <div class="row row-cols-auto mx-auto gap-2">
+    <div class="col" *ngFor="let author of authors$ | async" >
+      <div class="card h-100 sec" style="width: 300px;">
+        <img src="{{author.imageUrl}}" alt="{{author.name}} image" class="card-img-top img-fluid" style="height: 200px;">
+        <div class="card-body">
+          <a class="card-title h5 link-primary text-decoration-none" routerLink="/authors/{{author.id}}">{{author.name}}</a>
+          <hr class="hr-or">
+          <div class="d-flex justify-content-between">
+            <span class="card-text">{{author.country}}</span>
+            <span class="card-text">{{author.birthdate | date }}</span>
+          </div>
+          <hr class="hr-or">
+        </div>
+>>>>>>> v1
 </div>
+    </div>
+
 </div>
 </div>
 

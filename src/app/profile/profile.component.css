@@ -1,0 +1,17 @@
+
+.profile{
+  width: 25vw;
+  height: 25vw;
+  line-height: 25vw;
+  border-radius: 50%;
+  border: #F80 solid thick;
+  /*padding: 2px;*/
+}
+
+p.nm{
+  font-size: 20vw;
+}
+
+.nm{
+  color: #F80;
+}

@@ -1,14 +1,12 @@
 
 
-<div class="container mt-3">
-  <div class="col-3 offset-9">
+<div class="container mt-3 mb-3">
+  <div class="col-3 offset-9 mb-2">
     <app-book-search (books)="getResults($event)" (loading)="loading=$event"> </app-book-search>
   </div>
-  <div class="" *ngIf="result && !result.length && !loading">
-    <div class="alert alert-dismissible alert-info">
-      <p class="h6">We Could Not find any result to match your query</p>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="loading=false"></button>
-    </div>
+  <div class=" mt-2 col-md-6  mx-auto alert alert-dismissible alert-dark"  *ngIf="result && !result.length && !loading">
+    <p class="fst-italic text-center">We Could Not find any result to match your query</p>
+    <button type="button" class="btn-close align-text-top" data-bs-dismiss="alert" aria-label="Close" (click)="loading=false"></button>
   </div>
   <div class="rows row-cols-1 " style="max-width: 600px;">
     <div class="col" *ngFor="let book of result">
@@ -20,16 +18,16 @@
         <div class="col-md-8">
           <div class="card-body">
             <a href="" class="card-title h5 text-decoration-none" routerLink="/book/{{book.id}}">{{book.title}}</a>
-            <div class="card-text d-flex mx-0">
+            <div class="card-text d-flex flex-wrap mx-0">
               <span class="me-2">Year: {{book.year}}</span><span class="me-2">Pages: {{book.pages}}</span><span class="me-2">Category: {{book.branch}}</span>
             </div>
-            <div class="card-text d-flex  mx-0">
+            <div class="card-text d-flex  flex-wrap mx-0">
               <span class="me-2">Language: {{book.language}}</span> <span class="me-2">File Type: {{book.fileType}}</span>
             </div>
             <div class="card-test d-flex flex-wrap mx-0">
               <span class="me-2 bg-info px-2 mt-2 text-primary" *ngFor="let genre of book.genres">{{genre}}</span>
             </div>
-            <div class="card-text d-flex mx-0">
+            <div class="card-text d-flex flex-wrap mx-0">
               <a class="link-primary" *ngFor="let author of book.authors" routerLink="/authors/{{author.id}}">{{author.name}}</a>
             </div>
           </div>

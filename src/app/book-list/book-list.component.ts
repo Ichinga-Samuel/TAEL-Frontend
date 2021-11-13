@@ -1,6 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Book} from "../services/books/book";
+// import {Book} from "../services/books/book";
 import {Observable} from "rxjs";
+
+interface Book {
+     id: string
+     title: string,
+     imageUrl: string,
+}
 
 @Component({
   selector: 'app-book-list',

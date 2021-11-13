@@ -9,6 +9,19 @@
 /*  background-color: #F80;*/
 /*}*/
 
-/*a{*/
-/*  color: #F80*/
-/*}*/
+
+.fav{
+  color: #F80;
+}
+
+span fa-icon.rate:hover{
+  background-color: #F80;
+}
+
+span fa-icon.rate{
+  color: white;
+}
+
+button fa-icon{
+  color: green;
+}

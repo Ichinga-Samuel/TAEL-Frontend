@@ -7,7 +7,7 @@
     <div class="list-group-item" *ngFor="let rev of reviews">
       <div class="d-flex w-100 justify-content-between">
           <h6 class="">{{rev.name}}</h6>
-           <small class="">{{rev.time | date}}</small>
+           <small class="">{{rev.createdAt | date}}</small>
       </div>
       <p class="mb-1">{{rev.review}}</p>
     </div>
@@ -20,7 +20,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="close()"></button>
   </div>
   <div class="m-2">
-    <button class="btn-primary" type="submit" (click)="send()">Submit</button>
+    <button class="btn" type="submit" (click)="send()">Submit</button>
   </div>
 </div>
 

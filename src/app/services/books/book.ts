@@ -18,6 +18,7 @@ export class Book{
   fileSize: number;
   downloads: number;
   authors: Author[] = [];
+  similar: Book[] = []
 
   constructor(obj?: any) {
     this.id = obj?._id || null
@@ -35,6 +36,9 @@ export class Book{
     this.reviews = obj?.reviews || null;
     this.ratings = obj?.ratings || null;
     this.downloads = obj?.downloads || null;
+
+    let similar = obj?.similar || []
+    similar.map((book: any) => this.similar.push(new Book(book)))
     let authors = obj?.authors || []
     authors.map((author: any) => this.authors.push(new Author(author)))
   }

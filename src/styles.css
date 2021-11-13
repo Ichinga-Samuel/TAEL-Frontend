@@ -1,12 +1,27 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap.min.css';
 
 /* You can add global styles to this file, and also import other style files */
-
-html, body, app-root, app-shell, app-user{
+html {
+    box-sizing: border-box;
+}
+html, body, app-root{
 	height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-app-root, app-shell, app-user{
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-shell, app-user, app-password-reset, app-login{
+  height: 100%;
 	display: flex;
   flex-direction: column;
 }
@@ -14,21 +29,31 @@ app-root, app-shell, app-user{
 .shell{
 	flex: 1 0 auto;
   background-color: #121212;
-  color: antiquewhite;
-}
-button, .btn{
-  background-color: #F80 !important;
+  color: #ffffff;
 }
 
-a{
-  color: #F80 !important;
+.nav-item a, h1.navbar-brand a{
+  color: #F80;
 }
+.sec{
+  background-color: #383838;
+}
+.card a {
+  color: #F80;
+}
+ /*#1c1f23;*/
+button, .btn{
+  background-color: #F80;
+  color: #ffffff;
+}
+
 .footer-1{
   flex-shrink: 0;
 }
 
 .hr-or {
-    background-color: darkgoldenrod;
-    height: 4px;
+    background-color: #F80;
+    height: 30px;
     margin: 0px !important;
-  }
+}
+

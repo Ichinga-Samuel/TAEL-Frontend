@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, routerReducer} from '@ngrx/router-store';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
@@ -24,6 +23,7 @@ import { AuthorComponent } from './author/author.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { ReviewComponent } from './review/review.component';
 import { FooterComponent } from './footer/footer.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 //import { reducers, metaReducers } from './reducers';
 import {notifyReducer, userReducer, authorsReducer, booksReducer, metaReducers} from "./state";
@@ -32,10 +32,13 @@ import {UserEffects, BooksEffects, AuthorsEffects} from "./state";
 import { SizePipe } from './size.pipe';
 
 import {httpInterceptorProviders} from "./services/backend";
+import { ProfileComponent } from './profile/profile.component';
+import { NovelsComponent } from './novels/novels.component';
+import { TextbooksComponent } from './textbooks/textbooks.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlertComponent } from './alert/alert.component';
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,11 @@ import {httpInterceptorProviders} from "./services/backend";
     AuthorsComponent,
     ReviewComponent,
     FooterComponent,
+    ProfileComponent,
+    NovelsComponent,
+    TextbooksComponent,
+    PasswordResetComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,10 +72,12 @@ import {httpInterceptorProviders} from "./services/backend";
     StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer}, {metaReducers}),
     EffectsModule.forRoot([UserEffects, BooksEffects, AuthorsEffects]),
     StoreRouterConnectingModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule,
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://127.0.0.1:3000"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://localhost:3000"}],
   bootstrap: [AppComponent]
 })
 
 export class AppModule { }
+// "https://tael-backend.ew.r.appspot.com"

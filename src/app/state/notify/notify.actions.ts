@@ -1,15 +1,17 @@
 import {createAction, props} from "@ngrx/store";
-import {Notifications, LoginState} from "./notify.reducer";
-export {LoginState, Notifications} from "./notify.reducer"
+export {Notifications} from "./notify.reducer"
 
 
-export const loginError = createAction(
-  '[Login Page] Login Error',
-  props<{loginErr: LoginState}>()
-)
-
+export interface Notify{
+  msg?: string,
+  status?: string | boolean,
+  login?: boolean,
+  token?: string,
+  notice?: string,
+  alert?: string
+}
 
 export const notify = createAction(
   'Notification',
-  props<{Notification: Notifications}>()
+  props<{Notification: Notify}>()
 )

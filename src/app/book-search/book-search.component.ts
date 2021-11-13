@@ -5,7 +5,7 @@ import {debounceTime, filter, map, switchMap, tap} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 
-import {addBooks} from "../state";
+import {setBooks} from "../state";
 import {BooksService} from "../services/books/books.service";
 
 
@@ -29,7 +29,7 @@ export class BookSearchComponent implements OnInit {
       subscribe((books: Book[]) =>{
         this.loading.emit(false);
         this.books.emit(books);
-        this.store.dispatch(addBooks({books}))
+        this.store.dispatch(setBooks({books}))
     },
       (err:any) => {console.log(err); this.loading.emit(false); this.books.emit([])},
       () => {this.loading.emit(false)}

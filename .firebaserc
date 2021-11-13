@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tael-744fb": {
+      "hosting": {
+        "TAEL": [
+          "tael-744fb"
+        ]
+      }
+    }
+  }
+}

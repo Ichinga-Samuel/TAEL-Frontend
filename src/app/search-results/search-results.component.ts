@@ -4,8 +4,7 @@ import {BooksService} from "../services/books/books.service";
 import {ActivatedRoute} from "@angular/router";
 import {filter, map, switchMap} from "rxjs/operators";
 import {Store, select} from "@ngrx/store";
-
-import {searchBook, addBooks} from "../state/books/books.actions";
+import {setBooks} from "../state";
 
 
 @Component({
@@ -25,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
     this.route.queryParamMap.pipe(map(param => param.get('query') || ''), filter(q => q.length>=3), switchMap(query => this.bs.search(query)))
       .subscribe(books => {
         this.result = books;
-        this.store.dispatch(addBooks({books}))
+        this.store.dispatch(setBooks({books}))
       })
   }
 }

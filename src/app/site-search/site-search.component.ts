@@ -31,9 +31,10 @@ export class SiteSearchComponent implements OnInit {
         this.loading.emit(false)
         this.results.emit(result)
     },
-      (err:any) => {this.loading.emit(false) },
-      () => {this.loading.emit(false) }
+      (err:any) => {this.loading.emit(false); console.log(err); console.log('here')},
+      () => {this.loading.emit(false); console.log('end') }
     )
   }
 
 }
+

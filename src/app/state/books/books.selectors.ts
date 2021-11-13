@@ -1,6 +1,7 @@
 import {booksAdapter, BooksState} from "./books.reducer";
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {selectRouteParams} from "../router.selectors";
+import {Book} from "../../services/books/book";
 
 
 const {selectEntities, selectAll} = booksAdapter.getSelectors()
@@ -13,12 +14,40 @@ export const books = createSelector(
 
 export const popular = createSelector(
   books,
-  (books) => books.slice(0, 10)
+  (books) => {
+    let p = books.slice(0, 10).filter(b => b.title !== null); return p
+  }
 )
 
 export const bookEntities = createSelector(
   booksSelector,
   selectEntities,
+)
+
+export const novels = createSelector(
+  books,
+  (books) => {
+    let book: Book[] = []
+    for(let b of books){
+      if(b.branch === 'Novel'){
+        book.push(b)
+      }
+    }
+    return book
+  }
+)
+
+export const textbooks = createSelector(
+  books,
+  (books) => {
+    let book: Book[] = []
+    for(let b of books){
+      if(b.branch === 'Textbook'){
+        book.push(b)
+      }
+    }
+    return book
+  }
 )
 
 export const selectBook = createSelector(

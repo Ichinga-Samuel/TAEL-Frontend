@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-        this.store.select(popular).pipe().subscribe(books => this.books = books)
+        this.store.select(popular).pipe().subscribe(books => {
+          this.books = books;
+        })
 }
 
 }

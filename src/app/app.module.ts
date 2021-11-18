@@ -25,9 +25,8 @@ import { ReviewComponent } from './review/review.component';
 import { FooterComponent } from './footer/footer.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 
-//import { reducers, metaReducers } from './reducers';
-import {notifyReducer, userReducer, authorsReducer, booksReducer, metaReducers} from "./state";
-import {UserEffects, BooksEffects, AuthorsEffects} from "./state";
+import {notifyReducer, userReducer, authorsReducer, booksReducer, blogReducer, metaReducers} from "./state";
+import {UserEffects, BooksEffects, AuthorsEffects, BlogEffects} from "./state";
 
 import { SizePipe } from './size.pipe';
 
@@ -37,6 +36,10 @@ import { NovelsComponent } from './novels/novels.component';
 import { TextbooksComponent } from './textbooks/textbooks.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './alert/alert.component';
+import { BlogComponent } from './blog/blog.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { Four0fourComponent } from './four0four/four0four.component';
 
 
 @NgModule({
@@ -62,6 +65,10 @@ import { AlertComponent } from './alert/alert.component';
     TextbooksComponent,
     PasswordResetComponent,
     AlertComponent,
+    BlogComponent,
+    BlogsComponent,
+    BlogListComponent,
+    Four0fourComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,15 +76,15 @@ import { AlertComponent } from './alert/alert.component';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer}, {metaReducers}),
-    EffectsModule.forRoot([UserEffects, BooksEffects, AuthorsEffects]),
+    StoreModule.forRoot({user: userReducer, notify: notifyReducer, books: booksReducer, router: routerReducer, authors: authorsReducer, blogs: blogReducer}, {metaReducers}),
+    EffectsModule.forRoot([UserEffects, BooksEffects, AuthorsEffects, BlogEffects]),
     StoreRouterConnectingModule.forRoot(),
     FontAwesomeModule,
     BrowserAnimationsModule,
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http://localhost:3000"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "https://tael-backend.ew.r.appspot.com/api/v1/"}],
   bootstrap: [AppComponent]
 })
 
 export class AppModule { }
-// "https://tael-backend.ew.r.appspot.com"
+

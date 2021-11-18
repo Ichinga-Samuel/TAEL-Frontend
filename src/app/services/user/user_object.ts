@@ -19,7 +19,8 @@ export class User{
     this.reviews = obj?.reviews || null
     this.favourites = []
     if(obj?.fave){
-      for(let book of obj.fave){
+      let faves = obj.fave.concat(obj.blogs)
+      for(let book of faves){
         this.favourites.push({id: book.id, title: book.title, imageUrl: book.imageUrl})
       }
     }

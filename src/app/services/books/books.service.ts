@@ -14,48 +14,47 @@ export interface siteSearch {
   providedIn: 'root'
 })
 export class BooksService {
-  path: string = '/api/books'
-  constructor(private http: HttpClient, @Inject('API_URL') private url: string) {
+  path: string = 'books/'
+  constructor(private http: HttpClient, @Inject('API_URL') private url: string) {}
 
-  }
   search(query: string): Observable<Book[]>{
-    const queryUrl: string = `${this.url}${this.path}/search?q=${query}`;
+    const queryUrl: string = `${this.url}${this.path}search?q=${query}`;
     return this.http.get(queryUrl).pipe(map((res:any) => {return <any>res.map((book:any) =>  new Book(book))}))
 }
 
   latest(): Observable<Book[]>{
-    let url = `${this.url}${this.path}/popular`
+    let url = `${this.url}${this.path}popular`
     return this.http.get(url).pipe(map((res:any) => {return <any>res.data.map((book:any) => new Book(book))}))
   }
 
   getBooks(branch: string):Observable<any>{
-    let url = `${this.url}${this.path}/${branch}`
+    let url = `${this.url}${this.path}${branch}`
     return this.http.get(url).pipe(map((res:any) => {return <any>res.data.map((book:any) => new Book(book))}))
   }
 
   getBook(id: string): Observable<Book>{
-    let url = `${this.url}${this.path}/get/${id}`;
+    let url = `${this.url}${this.path}get/${id}`;
     return this.http.get(url).pipe(map((res: any) => {return  new Book(res)}))
   }
 
-  rate(id:string, rating: number): Observable<Book>{
-    let url = `${this.url}${this.path}/ratings?id=${id}&r=${rating}`
-    return this.http.get(url).pipe(map((res: any) => {return new Book(res.data)}))
+  rate(id:string, rating: number): Observable<any>{
+    let url = `${this.url}${this.path}ratings?id=${id}&r=${rating}`
+    return this.http.get(url).pipe(map((res: any) => ({id, changes: {ratings: res.data}})))
   }
 
   review(review: any): Observable<any>{
-    let path = '/api/reviews'
+    let path = 'reviews/'
     let url = `${this.url}${path}`
-    return this.http.post(url, review).pipe(map((res:any) => {return new Book(res)}))
+    return this.http.post(url, review).pipe(map((res:any) => ({id:review.id, changes: {reviews: res.data}})))
   }
 
   updateDownloads(id: string):Observable<any>{
-    let url = `${this.url}${this.path}/downloads/${id}`
-    return this.http.get(url).pipe(map((res:any) => {return new Book(res.data)}))
+    let url = `${this.url}${this.path}downloads/${id}`
+    return this.http.get(url).pipe(map((res:any) => ({id, changes: {downloads: res.data}})))
   }
 
   site_search(query: string):Observable<siteSearch>{
-    let url = `${this.url}/api/search?q=${query}`;
+    let url = `${this.url}search?q=${query}`;
     return this.http.get(url).pipe(map((res: any) => {
       let resp: siteSearch ={
         authors: [],

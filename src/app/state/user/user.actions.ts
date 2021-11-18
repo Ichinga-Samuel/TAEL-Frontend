@@ -1,5 +1,6 @@
 import {createAction, props} from "@ngrx/store";
 import {User} from "../../services/user/user_object";
+// import {UserState} from "./user.reducer";
 
 
 export interface SignupState{
@@ -16,40 +17,37 @@ export interface PwdReset{
 }
 
 export const login = createAction(
-  '[Login Page] Login',
+  'Login',
   props<{email: string; password: string}>()
 )
 
-export const logout = createAction(
-  '[Login Page] Login',
-)
-
+export const updateUser = createAction('Update User', props<{update: any}>())
 
 export const setUser = createAction(
-  '[User Page] User',
+  'Set User',
   props<{user: User}>()
 )
 
 export const resetUser = createAction(
-  '[User Page] User'
+  'Reset User'
 )
 
 export const reset = createAction(
-  '[Reset Password] Reset',
+  'Reset Password Reset',
   props<{state: PwdReset}>()
 )
 
 export const resetEmail = createAction(
-  '[Reset Email] Reset',
+  'Email Reset',
   props<{email: string}>()
 )
 
 export const signup = createAction(
-  '[Sign Up] Sign Up',
+  'Sign Up',
   props<{user:SignupState}>()
 )
 
 export const mark = createAction(
   'User Favourites',
-  props<{title: string, uid: string}>()
+  props<{title: string, uid: string, action: string}>()
 )

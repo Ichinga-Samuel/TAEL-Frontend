@@ -1,0 +1,57 @@
+
+<section class="container-fluid my-5">
+  <section class="container mx-auto">
+    <form action="" class="col-md-11 col-sm-auto mx-auto" [formGroup]="story" (ngSubmit)="send(story)">
+      <div class="accordion text-dark">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-target="#ck" data-bs-toggle="collapse">Start Writing</button>
+          </h2>
+          <div class="accordion-collapse collapse show" id="ck">
+            <div class="accordion-body">
+              <ckeditor [config]="editorConfig" [editor]="Editor" class="ck-content"  formControlName="body" (ready)="ready($event)"></ckeditor>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion accordion-flush text-dark">
+        <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button"type="button" data-bs-target="#dt" data-bs-toggle="collapse">Add Details</button>
+        </h2>
+        <div class="accordion-collapse collapse" id="dt">
+        <div class="mx-auto accordion-body">
+          <div class="my-3 col-sm-auto">
+          <label for="ti" class="form-label">Title</label>
+          <input type="text" class="form-control" id="ti" formControlName="title">
+        </div>
+        <div class="mb-3 col-sm-auto">
+          <label for="banner" class="form-label">Select Banner Image</label>
+          <input type="file" formControlName="imageUrl" id="banner" (change)="getFile($event)" name="banner" class="form-control">
+        </div>
+        <div class="mb-3 col-sm-auto">
+          <label for="la" class="form-label">Language</label>
+          <input type="text" id="la" formControlName="language" class="form-control">
+        </div>
+        <div class="mb-3  col-sm-auto">
+          <label for="tags" class="form-label">Tags</label>
+          <input type="text" id="tags" class="form-control" formControlName="tags">
+          <p class="form-text fst-italic">Separate Tags with Commas</p>
+        </div>
+        <div class="mb-3 col-sm-auto" *ngIf="!uid">
+          <label for="wr" class="form-label">Writer</label>
+          <input type="text" id="wr" class="form-control" formControlName="writer">
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+       <button type="submit" class="btn d-block ms-auto mt-2">Submit</button>
+    </form>
+    <section class="container col-md-6 col-sm-auto mb-3" *ngIf="!uid">
+      <p class="fs-3 text-center">Not Registered? Sign Up and gain recognition as a contributor</p>
+      <button class="btn d-block me-auto" routerLink="/signup">Signup</button>
+    </section>
+  </section>
+</section>
+

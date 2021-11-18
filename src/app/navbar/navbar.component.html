@@ -2,7 +2,7 @@
 <header class="sec">
   <nav class="navbar navbar-expand-lg mb-auto">
   <div class="container-fluid">
-    <a href="" routerLink="/home" class="navbar-brand"><img src="./assets/images/android-chrome-512x512.png" alt="" class="img-fluid" style="max-height:30px; max-width: 30px"></a>
+    <a href="" routerLink="/" class="navbar-brand"><img src="./assets/images/android-chrome-512x512.png" alt="" class="img-fluid" style="max-height:30px; max-width: 30px"></a>
     <button class="navbar-toggler btn" type="button" data-bs-toggle="collapse" data-bs-target="#nsc">
       <span class="navbar-toggler-icon text-white"></span>
     </button>
@@ -10,12 +10,12 @@
       <div class="navbar-nav me-auto">
         <div class="nav-item"><a href="" class="nav-link" routerLink="/authors">Authors</a></div>
         <div class="nav-item"><a href="" class="nav-link" routerLink="/novels">Novels</a></div>
-        <div class="nav-item"><a href="" class="nav-link" routerLink="/textbooks">Textbooks</a></div>
-<!--        <div class="nav-item"><a href="" class="nav-link" routerLink="/shortstories">Short Stories</a></div>-->
+        <div class="nav-item"><a href="" class="nav-link" routerLink="/blogs">Blogs</a></div>
+        <div class="nav-item"><a href="" class="nav-link" routerLink="/write">Write</a></div>
       </div>
       <div class="navbar-nav">
         <div class="nav-item me-1"><a href=""  role="button" class="nav-link" *ngIf="!loggedin" routerLink="/login">Login</a></div>
-        <div class="nav-item me-1 dropdown my-auto" *ngIf="loggedin"><a  class="nav-link dropdown-toggle text-decoration-none"  role="button" data-bs-toggle="dropdown">{{user}}</a>
+        <div class="nav-item me-1 dropdown my-auto" *ngIf="loggedin"><a class="nav-link dropdown-toggle text-decoration-none"  role="button" data-bs-toggle="dropdown">{{user}}</a>
           <ul class="dropdown-menu dropdown-menu-dark">
             <li class="dropdown-item"><a href="" class="" routerLink="/profile" >{{user}}</a></li>
             <li class="dropdown-item"><a role="button" class="" (click)="logout()" >Logout</a></li>

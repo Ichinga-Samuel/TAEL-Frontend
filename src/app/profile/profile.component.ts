@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(select(notify)).subscribe(res => {if(!res.login) {
-      this.router.navigate(['/home'])
+      this.router.navigate([''])
     }})
     this.store.pipe(select(selectUser)).subscribe(user => this.user = user)
   }

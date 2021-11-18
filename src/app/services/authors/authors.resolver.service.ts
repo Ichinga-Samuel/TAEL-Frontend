@@ -15,7 +15,7 @@ export class AuthorsResolverService implements Resolve<Author[]>{
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Author[]>{
     return this.store.select(selectauthors).pipe(take(1), exhaustMap((author:Author[]) => {
-      if(author.length < 10){this.store.dispatch(loadAll());}
+      if(author.length < 4){this.store.dispatch(loadAll());}
       return of(author)
     }), catchError(() => EMPTY))
   }

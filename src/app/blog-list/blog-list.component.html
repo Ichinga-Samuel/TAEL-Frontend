@@ -1,0 +1,17 @@
+
+<h2 class="text-capitalize h5">{{caption}}</h2>
+<div class="row row-cols-auto gap-1">
+  <div class="col" *ngFor="let blog of blogs">
+    <div class="card h-100"  style="width: 400px;">
+    <img src="{{blog.imageUrl}}" alt="{{blog.title}} image" class="card-img-top img-fluid" style="height: 200px">
+    <div class="card-title p-0">
+      <a class="p-0 text-center h6 text-decoration-none" style="font-size: small" routerLink="/blog/{{blog.id}}">{{blog.title.slice(0, 30)}}</a>
+    </div>
+      <div class="card-footer text-dark d-flex flex-wrap">
+        <span class="me-2 d-inline-block">{{blog.duration}} min read</span>
+        <span class="d-inline-block">{{blog.author}}</span>
+        <span class="ms-auto">{{blog.date | date}}</span>
+      </div>
+  </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import {combineLatest, map} from 'rxjs/operators';
 import {selectBook, setBooks, updateDownloads, notify, mark, selectUser, rateBook} from "../state";
 import {Title} from "@angular/platform-browser";
 import {faArrowDown, faStar} from "@fortawesome/free-solid-svg-icons";
+import {UserState} from "../state/user/user.reducer";
 
 
 @Component({
@@ -18,47 +19,38 @@ export class BookComponent implements OnInit{
   favourite = faStar
   fav = false
   book: Book | undefined
-  uid = ''
-  rater = false
-  similar: Book[] = []
+  user: UserState | undefined
   caption: string = "Similar Books"
-  title = ''
-  ratings: number[] = []
+  stars: number[] = []
+  nstars: number[] = []
+
   constructor(private route: ActivatedRoute, private store: Store, private ts: Title) {
   }
   down(){
-    let id = this.book?.id
-    // @ts-ignore
-    this.store.dispatch(updateDownloads({id}))
-  }
-
-  pop(){
-    this.rater = !this.rater
+    if(this.book?.id)this.store.dispatch(updateDownloads({id: this.book?.id}))
   }
 
   rate(i:number){
-    this.rater = !this.rater
     if(this.book?.id)this.store.dispatch(rateBook({id: this.book?.id, rating:i}))
   }
 
   mark(){
-    if(this.uid && this.book?.title){
-    this.store.dispatch(mark({title:this.book.title, uid: this.uid}))
-    }}
+    if(this.user?.id && this.book?.title){
+      let action = this.fav ? 'pull': 'add'
+      this.store.dispatch(mark({title:this.book.title, uid: this.user.id, action: action}))}
+    }
 
   ngOnInit(): void {
     this.store.select(selectBook).pipe(combineLatest(this.store.select(selectUser))).pipe(map(x => x)).subscribe(data => {
-      this.book = data[0]; this.title = this.book?.title || ''; this.ts.setTitle(this.title);
-      // @ts-ignore
-      this.similar = this.book?.similar || []
-      this.ratings = []
-      if(this.book){for(let r=0; r<this.book.ratings; r++){this.ratings.push(r)}}
-      if(data[1].favourites && data[1].id){
-        this.uid = data[1].id
-        for(let b of data[1].favourites){
-          if(this.book?.title === b.title){this.fav = true; break}
-          this.fav = false
-      }}
-      })
+      [this.book, this.user] = data
+      this.ts.setTitle(this.book?.title || "");
+      if (this.book){
+        let s = [1, 2, 3, 4, 5]
+        let r = 5 - this.book.ratings
+        this.stars =  s.slice(0, this.book.ratings)
+        this.nstars = s.slice(-r)
+        for (let b of this.user.favourites) { if (this.book.title === b.title){this.fav = true; break} this.fav = false}
+      }
+    })
   }
 }

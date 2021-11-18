@@ -2,7 +2,7 @@ import {Action, createReducer, on} from "@ngrx/store";
 import {EntityState, EntityAdapter, createEntityAdapter} from "@ngrx/entity";
 
 import {Book} from "../../services/books/book";
-import {addBooks, loadLatest, setBooks, clearBooks, setBook} from "./books.actions";
+import {addBooks, setBooks, clearBooks, setBook, updateBook} from "./books.actions";
 
 
 function sortByDownloads(a: Book, b:Book): number{
@@ -21,6 +21,7 @@ const bookReducer = createReducer(
   on(addBooks, (state, {books}) => booksAdapter.addMany(books, state)),
   on(setBook, (state, {book}) => booksAdapter.setOne(book, state)),
   on(setBooks, (state, {books}) => booksAdapter.setMany(books, state)),
+  on(updateBook, (state, {update}) => booksAdapter.updateOne(update, state)),
   on(clearBooks, (state, {books}) => booksAdapter.removeAll(state)),
   )
 

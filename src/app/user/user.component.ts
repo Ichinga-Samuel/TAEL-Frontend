@@ -3,11 +3,10 @@ import {Store, select} from "@ngrx/store";
 import {FormBuilder, FormGroup, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms'
 
 import {Router} from "@angular/router";
-import {notify} from "../state";
+import {notify, notifi} from "../state";
 import {signup, SignupState} from "../state/user/user.actions";
 import {EmailValidatorService} from "../services/user/email-validator.service";
 import {Title} from "@angular/platform-browser";
-import {UserService} from "../services/user/user.service";
 
 @Component({
   selector: 'app-user',
@@ -17,7 +16,7 @@ import {UserService} from "../services/user/user.service";
 export class UserComponent implements OnInit {
   userReg: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidator: EmailValidatorService, private ts: Title, private us: UserService) {
+  constructor(private fb: FormBuilder, private store: Store, private router: Router, private emailValidator: EmailValidatorService, private ts: Title) {
 
     let mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     this.userReg = fb.group({
@@ -42,13 +41,12 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ts.setTitle('Sign up Page of The African Ebook Library')
+    this.ts.setTitle('Sign Up')
     this.store.select(notify).subscribe(res => {
       if(res.status === 'created'){
+        this.store.dispatch(notifi({Notification: {status: ""}}))
         this.router.navigate(['/login'])
       }
     })
-    // @ts-ignore
   }
-
 }

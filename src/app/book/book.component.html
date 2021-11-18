@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <div class="container-fluid my-3 mx-sm-auto mx-md-5 px-md-5">
   <div class="col-6 mx-auto" *ngIf="!book">Unable to load book from database</div>
@@ -23,8 +24,11 @@
         <p class="card-text">First Publication: {{doc.year}}</p>
 =======
 <div class="container-fluid my-5">
+=======
+<div class="container-fluid my-5" *ngIf="book as doc">
+>>>>>>> v1
 <!--  <div class="col-6 mx-auto" *ngIf="!book">Unable to load book from database</div>-->
-  <div class="container row row-cols-2 gap-1 mx-auto" *ngIf="book as doc">
+  <div class="container row row-cols-2 gap-1 mx-auto">
       <div class="col-md-8 col-auto ">
         <div class="card sec" style="max-width: 800px">
         <img src="{{doc.imageUrl}}" alt="{{doc.title}} cover image" class="card-img-top img-fluid" style="height:400px">
@@ -39,14 +43,10 @@
             <p class="card-text" *ngIf="doc.year">First Publication: {{doc.year}}</p>
           </div>
           <hr class="hr-or">
-          <div class=" col-3 alert alert-dark alert-dismissible p-1 m-auto"  *ngIf="rater">
-            <h6 class="fst-italic text-center">Rate This Book</h6>
-            <span class="mx-auto d-block px-3 text-center"><fa-icon class="rate text-center" *ngFor="let i of [1, 2, 3, 4, 5]" [icon]="favourite" (click)="rate(i)" data-bs-dismiss="alert"></fa-icon></span>
-          </div>
           <div class="mb-2 p-2 d-flex flex-wrap align-items-center justify-content-between">
             <button class="btn  m-1" type="button" data-bs-target="#review" data-bs-toggle="collapse">Reviews</button>
-            <span class="m-2 p-1" (click)="pop()"><span class="fav" *ngFor="let r of ratings"><fa-icon [icon]="favourite"></fa-icon></span></span>
-            <button class="btn m-2" (click)="mark()">Add to Favourites <fa-icon *ngIf="fav" [icon]="favourite" class=""></fa-icon></button>
+            <span class="m-2"><fa-icon (click)="rate(r)" class="fav" [icon]="favourite" *ngFor="let r of stars"></fa-icon><fa-icon [icon]="favourite" class="" (click)="rate(i)" *ngFor="let i of nstars"></fa-icon></span>
+            <button class="btn m-2" (click)="mark()">Add to Favourites<fa-icon *ngIf="fav" [icon]="favourite" class=""></fa-icon></button>
           </div>
           <hr class="hr-or">
           <div class="collapse mt-2" id="review">
@@ -61,7 +61,7 @@
         </div>
         <div class="card-footer bg-dark">
           <div class="d-flex flex-wrap justify-content-between text-light">
-            <a href="{{doc.fileUrl}}" class="m-0 p-0 text-decoration-none" (click)="down()">Download <fa-icon [icon]="arrowDown"></fa-icon></a>
+            <a href="{{doc.fileUrl}}" class="m-0 p-0 text-decoration-none" (click)="down()">Download<fa-icon [icon]="arrowDown"></fa-icon></a>
             <span class="">File Type: {{doc.fileType}}</span>
             <span class="">Size: {{doc.fileSize | size}}</span>
             <span class="">Downloads: {{doc.downloads || 0}}</span>
@@ -83,6 +83,6 @@
       </div>
     </div>
   <div class="container mt-4 mx-2">
-    <app-book-list [books]="similar" [caption]="caption" *ngIf="similar.length"></app-book-list>
+    <app-book-list [books]="doc.similar" [caption]="caption" *ngIf="doc.similar.length"></app-book-list>
   </div>
 </div>

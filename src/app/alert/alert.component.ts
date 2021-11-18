@@ -17,14 +17,13 @@ export class AlertComponent implements OnInit {
 
   clear(){
     this.notice = ''
+    this.alert = 'alert-info'
     this.store.dispatch(notifi({Notification: {notice: ''}}))
   }
 
   ngOnInit(): void {
-    // this.stream = this.store.pipe(select(notify))
     this.store.pipe(select(notify)).subscribe(res => {
       this.alert = res.alert || this.alert;
-      // console.log(res);
       this.notice = res.notice || '';
     })
   }

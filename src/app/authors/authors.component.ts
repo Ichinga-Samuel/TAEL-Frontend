@@ -6,6 +6,7 @@ import {selectauthors} from "../state";
 import {Title} from "@angular/platform-browser";
 import {Observable} from "rxjs";
 
+
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',

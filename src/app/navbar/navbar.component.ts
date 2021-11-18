@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {Store, select} from "@ngrx/store";
-import {logout, notify, selectUser, resetUser, notifi} from "../state";
+import {notify, selectUser, resetUser, notifi} from "../state";
 import {mergeMap, map} from "rxjs/operators";
 import {siteSearch} from "../services/books/books.service";
 import {Author} from "../services/authors/author";
@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.checked = false
   }
   logout(){
-    // this.store.dispatch(logout())
     this.store.dispatch(resetUser())
     this.store.dispatch(notifi({Notification: {notice: 'You have Logged Out', status: "logged out", login: false, alert: "alert-info", token: ''}}))
   }

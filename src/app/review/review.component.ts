@@ -26,8 +26,7 @@ export class ReviewComponent implements OnInit{
 
   send(){
     if(this.login){
-      let post = {name: this.name, email: this.email, review: this.review, book: this.book, id: this.id}
-      this.store.dispatch(postReview({post}))
+      this.store.dispatch(postReview({name: this.name, email: this.email, review: this.review, book: this.book, id: this.id}))
       this.tb.nativeElement.value = ''
     }
     else{
@@ -46,7 +45,6 @@ export class ReviewComponent implements OnInit{
       data =>  {// @ts-ignore
         this.name = data.user.name; this.login=data.notifs.login; this.email = data.user.email}
     )
-
   }
 
 }

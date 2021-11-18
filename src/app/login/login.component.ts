@@ -14,7 +14,7 @@ import {Title} from "@angular/platform-browser";
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  public redirectUrl: string = '/home'
+  public redirectUrl: string = '/'
   loginForm: FormGroup
   emailR: FormControl
   constructor(private fg: FormBuilder, private router: Router, private store: Store, private route: ActivatedRoute, private ts: Title) {
@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
 
   reset(){
     this.store.dispatch(resetEmail({email: this.emailR.value}))
-    // this.store.pipe(select(notify)).subscribe(value => )
   }
 
   login(form: FormGroup){
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.ts.setTitle('Login Page of The African Ebook Library')
+    this.ts.setTitle('Login')
     let url = this.route.snapshot.queryParamMap.get('redirectUrl')
     this.redirectUrl = url ? url: this.redirectUrl
     // @ts-ignore

@@ -82,7 +82,7 @@ import { Four0fourComponent } from './four0four/four0four.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
   ],
-  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "https://tael-backend.ew.r.appspot.com/api/v1/"}],
+  providers: [httpInterceptorProviders, {provide:'API_URL', useValue: "http:localhost:3000/api/v1/"}],
   bootstrap: [AppComponent]
 })
 
